@@ -1,25 +1,41 @@
 import React, {useState} from "react";
 
-function CheckBox({label, value,OnChange}) {
+function CheckBox({label, setstate}) {
     const [checked, setChecked] = useState(false);
+    const [fishFree, setFishFree] = useState(false);
 
-    const handleChange = () => {
-        setChecked(!checked);
-    };
+    function handleChange(event) {
+        setChecked(event.target.checked);
+        if (event.target.checked) {
+            setFishFree('&health=fish-free');
+        } else {
+            setFishFree('');
+        }
+    }
 
     return (
         <>
             <label>
                 <input
                     type="checkbox"
-                    checked={value}
-                    onChange={OnChange}
+                    checked={checked}
+                    onChange={handleChange}
                 />
                 {label}
             </label>
-            <p>Is "My Value" checked? {checked.toString()}</p>
+            <p>{fishFree}</p>
         </>
     )
 }
 
+
 export default CheckBox
+
+/*const handleChange = (event) => {
+    setChecked(event.target.checked);
+    if (event.target.checked) {
+        setFishFree('&health=fish-free');
+    } else {
+        setFishFree('');
+    }
+};*/

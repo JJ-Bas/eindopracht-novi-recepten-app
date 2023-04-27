@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CheckBox from "../../components/Checbox/CheckBox";
 
 function Questionnaire(){
+    const [fishFree, setFishFree] = useState(false);
     return(
         <>
         <CheckBox
-        label='optietest'/>
+        label='optietest'
+        setstate={setFishFree}/>
+            <p>{fishFree}</p>
         </>
     )
 }
