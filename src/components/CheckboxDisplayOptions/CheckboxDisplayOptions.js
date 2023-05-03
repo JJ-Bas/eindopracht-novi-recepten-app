@@ -2,17 +2,17 @@ import React from "react";
 
 import CheckBox from "../Checkbox/CheckBox";
 
-function CheckboxDisplayOptions(){
+function CheckboxDisplayOptions() {
 
-    return(
+    return (
         <>
-        <CheckBox
-label='Fish-free'
-stateValue='fishsearchstring'
+            <CheckBox
+                label='Fish-free'
+                stateValue='fishsearchstring'
             />
             <CheckBox
-            label='Halal'
-            stateValue='halalsearchstring'/>
+                label='Halal'
+                stateValue='halalsearchstring'/>
         </>
     )
 }

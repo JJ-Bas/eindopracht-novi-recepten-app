@@ -5,14 +5,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import QuestionContext from "./Context/QuestionContext/QuestionContext";
+import AuthContext from "./Context/AuthContext/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Router>
-            <QuestionContext>
-                <App/>
-            </QuestionContext>
+            <AuthContext>
+                <QuestionContext>
+                    <App/>
+                </QuestionContext>
+            </AuthContext>
         </Router>
     </React.StrictMode>
 );

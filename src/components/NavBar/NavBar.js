@@ -27,7 +27,7 @@ function NavBar() {
             </button>
             <button
                 type='button'
-                onClick={() => navigate('/signuo')}>
+                onClick={() => navigate('/signup')}>
                 signup
             </button>
 

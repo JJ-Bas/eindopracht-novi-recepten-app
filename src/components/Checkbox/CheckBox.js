@@ -17,6 +17,7 @@ function CheckBox({label, stateValue}) {
         <>
             <label>
                 <input
+                    id={label}
                     type="checkbox"
                     checked={checked}
                     value={searchString}
