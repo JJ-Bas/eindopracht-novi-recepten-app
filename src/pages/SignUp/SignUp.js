@@ -1,38 +1,66 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
+import Input from "../../components/Input/Input";
 
 
-function SignUp(){
+function SignUp() {
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-    async function testRequest (e) {
-        try{
+    async function testRequest(e) {
+        try {
             const testResult = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all')
             console.log(testResult)
-        }
-        catch(e){
+        } catch (e) {
             console.error(e)
         }
     }
 
-    async function signUp (e) {
+    async function signUp(e) {
         try {
             const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
                 "username": "jef",
-                "email" : "jef@novi.nl",
-                "password" : "123456",
+                "email": "jef@novi.nl",
+                "password": "123456",
                 "role": ["user"]
             })
             console.log(result)
-        }
-        catch(e) {
+        } catch (e) {
             console.error(e)
         }
     }
 
-    return(
+    return (
         <>
+            <ul>
+                <li>username: jef</li>
+                <li>email : jef@novi.nl,</li>
+                <li>password : 123456</li>
+            </ul>
+            <form>
+                <Input
+                    type='text'
+                    id='username'
+                    label='naam'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}/>
+                <Input
+                    type='email'
+                    id='email'
+                    label='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}/>
+                <Input
+                    type='password'
+                    id='password'
+                    label='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}/>
+                <Input type='submit'/>
+            </form>
             <label>
-        <input type='button' onClick={() => testRequest()}/>
+                <input type='button' onClick={() => testRequest()}/>
                 testrequest
             </label>
             <label>

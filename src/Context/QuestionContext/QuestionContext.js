@@ -5,11 +5,25 @@ export const QuestionContext = createContext({});
 
 
 function QuestionContextProvider ({children}){
-    const [searchStringKeys, setSearchStringKeys] = useState({})
+    //voor het bijhouden van des strings voor de zoek opdracht
+    const [searchString, setSearchString] = useState(
+        {
+            fish:false,
+            halal:false,
+        }
+    )
+
+
+
+    // voor alles wat de context moet kunnen doorgeven
+    const questionContextData = {
+       key:'string'
+
+    }
 
 
     return (
-        <QuestionContext.Provider value={{searchStringKeys}}>
+        <QuestionContext.Provider value={questionContextData}>
             {children}
         </QuestionContext.Provider>
     )

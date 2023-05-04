@@ -4,7 +4,7 @@ function CheckBox({label, stateValue}) {
     const [checked, setChecked] = useState(false);
     const [searchString, setSearchString] = useState('')
 
-    const handleCheckboxChange = (e) => {
+   function handleCheckboxChange (e) {
         setChecked(e.target.checked);
         if (e.target.checked) {
             setSearchString(stateValue);
@@ -20,7 +20,6 @@ function CheckBox({label, stateValue}) {
                     id={label}
                     type="checkbox"
                     checked={checked}
-                    value={searchString}
                     onChange={handleCheckboxChange}
                 />
                 {label}
