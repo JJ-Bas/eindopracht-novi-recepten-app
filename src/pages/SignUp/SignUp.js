@@ -17,12 +17,13 @@ function SignUp() {
         }
     }
 
-    async function signUp(e) {
+    async function handleSignUp(e) {
+        e.preventDefault()
         try {
             const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
-                "username": "jef",
-                "email": "jef@novi.nl",
-                "password": "123456",
+                "username": username,
+                "email": email,
+                "password": password,
                 "role": ["user"]
             })
             console.log(result)
@@ -38,7 +39,7 @@ function SignUp() {
                 <li>email : jef@novi.nl,</li>
                 <li>password : 123456</li>
             </ul>
-            <form>
+            <form onSubmit={handleSignUp}>
                 <Input
                     type='text'
                     id='username'
@@ -63,11 +64,6 @@ function SignUp() {
                 <input type='button' onClick={() => testRequest()}/>
                 testrequest
             </label>
-            <label>
-                <input type='button' onClick={() => signUp()}/>
-                registertest
-            </label>
-
         </>
     )
 }

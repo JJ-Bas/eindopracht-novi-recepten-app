@@ -1,17 +1,26 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 
 function CheckBox({label, stateValue}) {
+    const {handleCheckboxChange} = useContext(QuestionContext)
+    const {fishOption} = useContext(QuestionContext)
+    const {setFishOption} = useContext(QuestionContext)
+
     const [checked, setChecked] = useState(false);
     const [searchString, setSearchString] = useState('')
 
-   function handleCheckboxChange (e) {
-        setChecked(e.target.checked);
-        if (e.target.checked) {
-            setSearchString(stateValue);
-        } else {
-            setSearchString('');
-        }
-    };
+    function checkBoxCheck(string) {
+        handleCheckboxChange(string, setFishOption)
+    }
+/*
+    function handleCheckboxChange(searchString,setstate) {
+        setChecked(!checked)
+        console.log(checked)
+        if (checked === true ){
+            setstate(getString)
+        } else { setstate('')}
+    }
+*/
 
     return (
         <>
@@ -20,11 +29,11 @@ function CheckBox({label, stateValue}) {
                     id={label}
                     type="checkbox"
                     checked={checked}
-                    onChange={handleCheckboxChange}
+                    onChange={() => checkBoxCheck(stateValue, fishOption)}
                 />
                 {label}
             </label>
-            <p>State value: {checked ? searchString : ''}</p>
+            <p>test: {searchString}</p>
         </>
     )
 }
