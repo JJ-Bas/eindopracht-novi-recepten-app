@@ -1,39 +1,29 @@
-import React, {useContext, useState} from "react";
-import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
+import React, {useState} from "react";
 
-function CheckBox({label, stateValue}) {
-    const {handleCheckboxChange} = useContext(QuestionContext)
-    const {fishOption} = useContext(QuestionContext)
-    const {setFishOption} = useContext(QuestionContext)
+// ...props is voor het meegeven van een disabled attribuut
+function CheckBox({label, checked, onChange, i , ...props}) {
 
-    const [checked, setChecked] = useState(false);
-    const [searchString, setSearchString] = useState('')
+    //defaultChecked is zodat we de start status van de checkbox kunnen meegeven
+    const defaultChecked = checked ? checked : false;
+    const [isChecked, setIsChecked] = useState(defaultChecked);
 
-    function checkBoxCheck(string) {
-        handleCheckboxChange(string, setFishOption)
-    }
-/*
-    function handleCheckboxChange(searchString,setstate) {
-        setChecked(!checked)
-        console.log(checked)
-        if (checked === true ){
-            setstate(getString)
-        } else { setstate('')}
-    }
-*/
+
+
 
     return (
         <>
+            <div key={i}>
             <label>
                 <input
-                    id={label}
                     type="checkbox"
-                    checked={checked}
-                    onChange={() => checkBoxCheck(stateValue, fishOption)}
+                    checked={isChecked}
+                    onChange={onChange}
+                    {...props}
                 />
                 {label}
             </label>
-            <p>test: {searchString}</p>
+                <p>{isChecked ? "Selected" : "Unchecked"}</p>
+            </div>
         </>
     )
 }
