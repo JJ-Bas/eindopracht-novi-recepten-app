@@ -1,23 +1,10 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 
 function CheckboxDisplayOptions() {
-    // lijst met checkboxen die gemaakt moet worden
-    const [optionList, setOptionList] = useState([
-        {option: 'fish', selected: false},
-        {option: 'halal', selected: true},
-        {option: 'nuts', selected: false},
-        ]
-    )
 
-    // functie maakt een tijdelijke variabel(temp) aan om de nieuwe status van de optie in op te slaan.
-    // en geeft deze optie daarna weer terug aan de orginele lijst
-    const handleChange = (selected, i) => {
-        let temp = optionList[i];
-        temp.selected = !selected;
-        let optionListClone = [...optionList];
-        optionListClone[i] = temp;
-        setOptionList([...optionListClone]);
-    };
+    const {optionList} = useContext(QuestionContext)
+    const {handleChange} = useContext(QuestionContext)
 
     return (
         <>
