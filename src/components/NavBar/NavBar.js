@@ -30,6 +30,11 @@ function NavBar() {
                 onClick={() => navigate('/signup')}>
                 signup
             </button>
+        <button
+            type='button'
+            onClick={() => navigate('/quest-results')}>
+            quest-results
+        </button>
 
         </nav>)
 }

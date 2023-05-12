@@ -3,8 +3,17 @@ import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 
 function CheckboxDisplayOptions() {
 
+    const [requestString, setRequestString] = useState('')
+
     const {optionList} = useContext(QuestionContext)
     const {handleChange} = useContext(QuestionContext)
+    const {createRequest} = useContext(QuestionContext)
+
+    function goGet () {
+        const queryString = createRequest(optionList)
+        setRequestString(queryString)
+    }
+
 
     return (
         <>
@@ -22,6 +31,9 @@ function CheckboxDisplayOptions() {
                     </label>
                 </div>
             ))}
+            <p>{requestString}</p>
+            <button type='button' onClick={() => goGet()}>testbutton</button>
+            <button type='button' onClick={() => console.log(requestString)}>testbutton</button>
         </>
     )
 }
