@@ -15,6 +15,28 @@ function QuestionContextProvider({children}) {
             {option: 'Celery-Free', selected: false, string: '&health=celery-free'},
             {option: 'Crustcean-Free', selected: false, string: '&health=crustacean-free'},
             {option: 'Dairy-Free', selected: false, string: '&health=dairy-free'},
+            {option: 'egg-free', selected: false, string: '&health=egg-free'},
+            {option: 'fish-free', selected: false, string: '&health=fish-free'},
+            {option: 'gluten-free', selected: false, string: '&health=gluten-free'},
+            {option: 'kosher', selected: false, string: '&health=kosher'},
+            {option: 'kidney-friendly', selected: false, string: '&health=kidney-friendly'},
+            {option: 'low-sugar', selected: false, string: '&health=low-sugar'},
+            {option: 'lupine-free', selected: false, string: '&health=lupine-free'},
+            {option: 'low-potassium', selected: false, string: '&health=low-potassium'},
+            {option: 'mollusk-free', selected: false, string: '&health=mollusk-free'},
+            {option: 'mustard-free', selected: false, string: '&health=mustard-free'},
+            {option: 'peanut-free', selected: false, string: '&health=peanut-free'},
+            {option: 'pecatarian', selected: false, string: '&health=pecatarian'},
+            {option: 'pork-free', selected: false, string: '&health=pork-free'},
+            {option: 'red-meat-free', selected: false, string: '&health=red-meat-free'},
+            {option: 'sesame-free', selected: false, string: '&health=sesame-free'},
+            {option: 'shellfish-free', selected: false, string: '&health=shellfish-free'},
+            {option: 'soy-free', selected: false, string: '&health=soy-free'},
+            {option: 'sulfite-free', selected: false, string: '&health=sulfite-free'},
+            {option: 'tree-nut-free', selected: false, string: '&health=tree-nut-free'},
+            {option: 'vegan', selected: false, string: '&health=vegan'},
+            {option: 'vegetarian', selected: false, string: '&health=vegetarian'},
+            {option: 'wheat-free', selected: false, string: '&health=wheat-free'},
         ]
     )
 
@@ -26,7 +48,7 @@ function QuestionContextProvider({children}) {
         let optionListClone = [...optionList];
         optionListClone[i] = temp;
         setOptionList([...optionListClone]);
-    };
+    }
 
     //functie voor het aanmaken van de GET request
     function createRequest(list) {
@@ -43,12 +65,19 @@ function QuestionContextProvider({children}) {
         return requestString
     }
 
+    //functie die alle strings aan elkaar plak voor het GET request
+    function formulateGetRequest () {
+        const getRequestString =  createRequest(optionList)
+        return getRequestString
+    }
+
     // voor alles wat de context moet kunnen doorgeven
 
     const questionContextData = {
         optionList: optionList,
         handleChange: handleChange,
         createRequest: createRequest,
+        formulateGetRequest: formulateGetRequest,
     }
 
 
