@@ -7,8 +7,14 @@ export const QuestionContext = createContext({});
 function QuestionContextProvider({children}) {
 
     //tijdelijke plaatsing getStart voor coderen
+    //TODO tijdelijke plaatsing verwijderen
     const getStart = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}`
 
+    const [cuisineType, setCuisineType]= useState('')
+
+    function cuisineSetter(searchstring) {
+        setCuisineType(searchstring)
+    }
     // lijst met checkboxen die gemaakt moet worden
     const [optionList, setOptionList] = useState([
             {option: 'Alcohol-Free', selected: false, string: '&health=alcohol-free'},
@@ -78,6 +84,8 @@ function QuestionContextProvider({children}) {
         handleChange: handleChange,
         createRequest: createRequest,
         formulateGetRequest: formulateGetRequest,
+        cuisineType: cuisineType,
+        cuisineSetter: cuisineSetter,
     }
 
 

@@ -4,6 +4,9 @@ import styles from './RecipeResultDisplay.module.scss'
 
 function RecipeResultDisplay({recipeName, image, time, ingredients, back, next}) {
 
+
+    //TODO: -add alt to image
+
     return(
         <>
                         <div className={styles['outer-display-case']}>

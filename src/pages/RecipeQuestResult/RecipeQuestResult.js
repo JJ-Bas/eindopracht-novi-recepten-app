@@ -9,12 +9,16 @@ function RecipeQuestResult() {
     const [status, setStatus] = useState('pending')
     const {optionList} = useContext(QuestionContext)
     const [mainRecipeList, setMainRecipeList] = useState({})
+    // state items met zoekresultaten
     const [starterRecipeList, setStarterRecipeList] = useState({})
+    //index nummers voor de navigatie knoppen
     const [mainIndex, setMainIndex] = useState(0)
     const [starterIndex, setStarterIndex] = useState(0)
     const [dessertIndex, setDessertIndex] = useState(0)
 
     //useEffect vuurt get request af naar de edamamAPI gebaseerd op de status van de items die uit de QuestionContext worden gehaald
+    //TODO zorg dat er 3 get request klaarstaan voor de mounting van de pagina
+
     useEffect(() => {
         async function fetchData(mealType, setlist) {
             try {

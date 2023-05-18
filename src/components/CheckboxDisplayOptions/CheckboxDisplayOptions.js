@@ -3,6 +3,8 @@ import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 
 function CheckboxDisplayOptions() {
 
+
+    //TODO -verwijder alle requestString test objecten
     const [requestString, setRequestString] = useState('')
 
     const {optionList} = useContext(QuestionContext)
