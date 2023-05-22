@@ -1,7 +1,66 @@
+//TODO remove border colors for design
+
 .outer-display-case {
-  width: 400px;
-  height: 800px;
   border-style: solid;
   border-color: black;
   border-width: 2px;
+  //test end
+  width: 500px;
+  height: 800px;
+  //
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+
+  color: black;
+
 }
+
+article{
+  border-style: solid;
+  border-color: red;
+  //test end
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
+  max-height: 800px;
+}
+
+img{
+  border-style: solid;
+  border-color: black;
+  border-radius: 50%;
+  width: 300px;
+}
+
+.recipe-info-container{
+  background-color: #AA7B35;
+  border-radius: 10px;
+  width: 100%;
+  padding: 40px;
+}
+
+.index-button{
+  width: 100px;
+  height: 50px;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  background-color: #eb4747;
+  margin: 20px;
+  box-shadow:  -10px 10px 5px #161a1d;
+}
+
+
+
+.index-button:hover {
+ background-color: white;
+
+}
+
+.index-button:active{
+  width: 96px;
+  height:96px;
+  box-shadow:  -7px 7px 5px black;
+}
+

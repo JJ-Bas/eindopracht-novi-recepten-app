@@ -7,21 +7,21 @@ function RecipeResultDisplay({recipeName, image, time, ingredients, back, next})
 
     //TODO: -add alt to image
 
-    return(
+    return (
         <>
-                        <div className={styles['outer-display-case']}>
-                <button type='button' onClick={next}>next</button>
+            <div className={styles['outer-display-case']}>
+                <button className={styles['index-button']} type='button' onClick={next}>next</button>
                 <article>
+                    <img src={image} alt={recipeName}/>
+                    <div className={styles['recipe-info-container']}>
                     <h2>{recipeName}</h2>
-
-                    <img src={image}/>
-
                     <ul>
                         <li>tijd: {time} minuten</li>
                         <li>aantal ingredienten {ingredients}</li>
                     </ul>
+                    </div>
                 </article>
-                <button type='button' onClick={back}>back</button>
+                <button className={styles['index-button']} type='button' onClick={back}>back</button>
             </div>
         </>
     )

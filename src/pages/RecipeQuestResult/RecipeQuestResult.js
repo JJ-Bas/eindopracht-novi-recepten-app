@@ -9,7 +9,7 @@ function RecipeQuestResult() {
     const {optionList} = useContext(QuestionContext)
     const {cuisineType} = useContext(QuestionContext)
 
-// state items voor het laden van de pagina
+    // state items voor het laden van de pagina
     const [starterReqStatus, setStarterReqStatus] = useState('pending')
     const [mainReqStatus, setMainReqStatus] = useState('pending')
     const [dessertReqStatus, setDessertReqStatus] = useState('pending')
@@ -23,26 +23,23 @@ function RecipeQuestResult() {
     const [dessertIndex, setDessertIndex] = useState(0)
 
     //useEffect vuurt get request af naar de edamamAPI gebaseerd op de status van de items die uit de QuestionContext worden gehaald
-    //TODO zorg dat er 3 get request klaarstaan voor de mounting van de pagina
+    //TODO - zorg dat de API request worden beinvloed door de opties van de CheckboxDisplay
+    //     - zorg ervoor dat de API random recepten terug geeft
 
     useEffect(() => {
-        async function fetchData(mealTypeString, cuisineTypeString, setlist, setloadingstatus) {
+        async function fetchData(mealTypeString, cuisineTypeString, setlist, setLoadingStatus) {
             try {
                 const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}${mealTypeString}${cuisineTypeString}`);
                 setlist(result.data);
-                setloadingstatus('done')
+                setLoadingStatus('done')
             } catch (e) {
                 console.error(e)
             }
-
         }
-
         fetchData('&dishType=main-course', cuisineType, setMainRecipeList, setMainReqStatus)
         fetchData('&dishType=starter', cuisineType, setStarterRecipeList, setStarterReqStatus)
         fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, setDessertReqStatus)
-
     }, [])
-
 
     // twee functies om door de resultaten te navigeren. Werken onafhankelijk van het aantal hits
 
@@ -65,8 +62,8 @@ function RecipeQuestResult() {
         }
     }
 
-
-    return (<>
+    return (
+        <>
             <button type='button' onClick={() => console.log(mainRecipeList)}>recipeList</button>
             <div className='temporary-container'>
                 {starterReqStatus === 'done' ? <RecipeResultDisplay
@@ -86,6 +83,7 @@ function RecipeQuestResult() {
                     ingredients={mainRecipeList.hits[mainIndex].recipe.ingredients.length}
                     back={() => lastItem(mainIndex, setMainIndex)}
                 /> : <p>Loading...</p>}
+
                 {dessertReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(dessertIndex, setDessertIndex)}
                     image={dessertRecipeList.hits[dessertIndex].recipe.image}
@@ -94,11 +92,8 @@ function RecipeQuestResult() {
                     ingredients={dessertRecipeList.hits[dessertIndex].recipe.ingredients.length}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
                 /> : <p>Loading...</p>}
-
             </div>
-
-
-        </>)
+    </>)
 }
 
 export default RecipeQuestResult

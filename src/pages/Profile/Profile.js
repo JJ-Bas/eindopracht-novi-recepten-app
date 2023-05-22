@@ -3,13 +3,13 @@ import {AuthContext} from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 
 
-function Profile(){
+function Profile() {
     const [profileData, setProfileData] = useState({})
+    const [status, setStatus] = useState('pending')
     const {user} = useContext(AuthContext)
-    const {logout} =useContext(AuthContext)
+    const {logout} = useContext(AuthContext)
 
 
-/*
     useEffect(() => {
         // we halen de pagina-content op in de mounting-cycle
         async function fetchProfileData() {
@@ -24,6 +24,7 @@ function Profile(){
                     },
                 });
                 setProfileData(result.data);
+                setStatus('done')
             } catch (e) {
                 console.error(e);
             }
@@ -31,26 +32,27 @@ function Profile(){
 
         fetchProfileData();
     }, [])
-*/
 
 
-
-    return(
+    return (
         <>
-
-            <p>profile</p>
-            <ul>
-                <li>{user.username}</li>
-                <li>{user.id}</li>
-                <li>{user.email}</li>
-                <li>{user.info}</li>
-                <li>{user.roles}</li>
-            </ul>
-            <label>
-            <input type='button' onClick={() => logout()
-            }/>
-                log out
-            </label>
+            {status === 'done' ?
+                <div>
+                    <p>profile</p>
+                    <ul>
+                        <li>{user.username}</li>
+                        <li>{user.id}</li>
+                        <li>{user.email}</li>
+                        <li>{user.info}</li>
+                        <li>{user.roles}</li>
+                    </ul>
+                    <label>
+                        <input type='button' onClick={() => logout()
+                        }/>
+                        log out
+                    </label>
+                </div>
+                : <p>Loading...</p>}
         </>
     )
 }
