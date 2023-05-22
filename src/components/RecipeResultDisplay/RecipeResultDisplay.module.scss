@@ -1,4 +1,5 @@
-//TODO remove border colors for design
+//TODO -remove border colors for design
+// -import classnames library?
 
 .outer-display-case {
   border-style: solid;
@@ -17,7 +18,7 @@
 
 }
 
-article{
+.recipe-info-case{
   border-style: solid;
   border-color: red;
   //test end
@@ -28,7 +29,7 @@ article{
   max-height: 800px;
 }
 
-img{
+.recipe-img{
   border-style: solid;
   border-color: black;
   border-radius: 50%;
@@ -44,14 +45,15 @@ img{
 
 .index-button{
   width: 100px;
-  height: 50px;
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-  background-color: #eb4747;
+  height: 100px;
+  border-radius: 50%;
   margin: 20px;
   box-shadow:  -10px 10px 5px #161a1d;
 }
 
-
+.top-button {
+  background-color: red;
+}
 
 .index-button:hover {
  background-color: white;

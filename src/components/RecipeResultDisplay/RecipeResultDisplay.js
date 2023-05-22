@@ -10,9 +10,9 @@ function RecipeResultDisplay({recipeName, image, time, ingredients, back, next})
     return (
         <>
             <div className={styles['outer-display-case']}>
-                <button className={styles['index-button']} type='button' onClick={next}>next</button>
-                <article>
-                    <img src={image} alt={recipeName}/>
+                <button className={styles['index-button']+' '+styles['top-button']} type='button' onClick={next}>next</button>
+                <article className={styles['recipe-info-case']}>
+                    <img src={image} alt={recipeName} className={styles['recipe-img']}/>
                     <div className={styles['recipe-info-container']}>
                     <h2>{recipeName}</h2>
                     <ul>

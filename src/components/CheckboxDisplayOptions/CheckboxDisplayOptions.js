@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
+import styles from './CheckboxDisplayOptions.module.scss'
 
 function CheckboxDisplayOptions() {
 
@@ -14,18 +15,20 @@ function CheckboxDisplayOptions() {
 
     return (
         <>
-        <h1>opties</h1>
+        <h1>opties!!!!</h1>
             {optionList.map(({ option, selected }, i) => (
-                <div key={i}>
-                    <label htmlFor={i}>
+                <div key={i} className={styles['checkbox-button']}>
+                    <label htmlFor={i} className={styles['toggle-wrapper']}>
                         <input
                             type="checkbox"
                             onChange={() => handleChange(selected, i)}
                             checked={selected}
                             id={i}
                         />
-                        <span>{option}</span>
+                        <div className={styles['toggle-slider']+' '+styles['round']}>
+                            <div className={styles['toggle-knob']}></div></div>
                     </label>
+                    <span>{option}</span>
                 </div>
             ))}
         </>
