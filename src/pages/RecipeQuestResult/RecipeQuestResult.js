@@ -26,19 +26,18 @@ function RecipeQuestResult() {
     //TODO - zorg dat de API request worden beinvloed door de opties van de CheckboxDisplay
     //     - zorg ervoor dat de API random recepten terug geeft
 
-    useEffect(() => {
-        async function fetchData(mealTypeString, cuisineTypeString, setlist, setLoadingStatus) {
-            try {
-                const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}${mealTypeString}${cuisineTypeString}`);
-                setlist(result.data);
-                setLoadingStatus('done')
-            } catch (e) {
-                console.error(e)
-            }
+    async function fetchData(mealTypeString, cuisineTypeString, setlist, setLoadingStatus) {
+        try {
+            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}${mealTypeString}${cuisineTypeString}`);
+            setlist(result.data);
+            setLoadingStatus('done')
+        } catch (e) {
+            console.error(e)
         }
+    }
+
+    useEffect(() => {
         fetchData('&dishType=main-course', cuisineType, setMainRecipeList, setMainReqStatus)
-        fetchData('&dishType=starter', cuisineType, setStarterRecipeList, setStarterReqStatus)
-        fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, setDessertReqStatus)
     }, [])
 
     // twee functies om door de resultaten te navigeren. Werken onafhankelijk van het aantal hits
@@ -62,6 +61,8 @@ function RecipeQuestResult() {
         }
     }
 
+    //TODO -opmaak van de starter en dessert request knop
+
     return (
         <>
             <button type='button' onClick={() => console.log(mainRecipeList)}>recipeList</button>
@@ -73,7 +74,7 @@ function RecipeQuestResult() {
                     time={starterRecipeList.hits[starterIndex].recipe.totalTime}
                     ingredients={starterRecipeList.hits[starterIndex].recipe.ingredients.length}
                     back={() => lastItem(starterIndex, setStarterIndex)}
-                /> : <p>Loading...</p>}
+                /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, setStarterReqStatus)}>starter</button>}
 
                 {mainReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(mainIndex, setMainIndex)}
@@ -91,7 +92,7 @@ function RecipeQuestResult() {
                     time={dessertRecipeList.hits[dessertIndex].recipe.totalTime}
                     ingredients={dessertRecipeList.hits[dessertIndex].recipe.ingredients.length}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
-                /> : <p>Loading...</p>}
+                /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, setDessertReqStatus)}>dessert</button>}
             </div>
     </>)
 }
