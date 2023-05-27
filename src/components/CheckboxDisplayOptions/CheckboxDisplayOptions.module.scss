@@ -1,3 +1,17 @@
+
+.container-checkbox-display {
+  border-style: solid;
+  border-color: red;
+  //test
+  width: 60vw;
+  height: 530px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+// opmaak slider button
+
 .checkbox-button {
   border-style: solid;
   border-color: orange;

@@ -6,8 +6,9 @@ import './RecipeQuestResult.scss'
 
 function RecipeQuestResult() {
 
-    const {optionList} = useContext(QuestionContext)
     const {cuisineType} = useContext(QuestionContext)
+    const {checkboxCombined} = useContext(QuestionContext)
+    const {recipeTime} = useContext(QuestionContext)
 
     // state items voor het laden van de pagina
     const [starterReqStatus, setStarterReqStatus] = useState('pending')
@@ -26,10 +27,10 @@ function RecipeQuestResult() {
     //TODO - zorg dat de API request worden beinvloed door de opties van de CheckboxDisplay
     //     - zorg ervoor dat de API random recepten terug geeft
 
-    async function fetchData(mealTypeString, cuisineTypeString, setlist, setLoadingStatus) {
+    async function fetchData(mealTypeString, cuisineTypeString, setlist, healthOptionString, setLoadingStatus) {
         try {
-            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}${mealTypeString}${cuisineTypeString}`);
-            setlist(result.data);
+            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}&random=true${recipeTime}${mealTypeString}${cuisineTypeString}${healthOptionString}`);
+            setlist(result.data.hits);
             setLoadingStatus('done')
         } catch (e) {
             console.error(e)
@@ -37,27 +38,24 @@ function RecipeQuestResult() {
     }
 
     useEffect(() => {
-        fetchData('&dishType=main-course', cuisineType, setMainRecipeList, setMainReqStatus)
+        fetchData('&dishType=main-course', cuisineType, setMainRecipeList, checkboxCombined, setMainReqStatus)
     }, [])
 
     // twee functies om door de resultaten te navigeren. Werken onafhankelijk van het aantal hits
 
     function nextItem(state, setState) {
-        if (state === (mainRecipeList.hits.length - 1)) {
+        if (state === (mainRecipeList.length - 1)) {
             setState(0)
         } else {
             setState(state + 1)
-            console.log(state)
-            console.log(mainRecipeList)
         }
     }
 
     function lastItem(state, setState) {
         if (state === 0) {
-            setState(mainRecipeList.hits.length - 1)
+            setState(mainRecipeList.length - 1)
         } else {
             setState(state - 1)
-            console.log(state)
         }
     }
 
@@ -69,31 +67,32 @@ function RecipeQuestResult() {
             <div className='temporary-container'>
                 {starterReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(starterIndex, setStarterIndex)}
-                    image={starterRecipeList.hits[starterIndex].recipe.image}
-                    recipeName={starterRecipeList.hits[starterIndex].recipe.label}
-                    time={starterRecipeList.hits[starterIndex].recipe.totalTime}
-                    ingredients={starterRecipeList.hits[starterIndex].recipe.ingredients.length}
+                    image={starterRecipeList[starterIndex].recipe.image}
+                    recipeName={starterRecipeList[starterIndex].recipe.label}
+                    time={starterRecipeList[starterIndex].recipe.totalTime}
+                    ingredients={starterRecipeList[starterIndex].recipe.ingredients.length}
                     back={() => lastItem(starterIndex, setStarterIndex)}
-                /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, setStarterReqStatus)}>starter</button>}
+                /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>starter</button>}
 
                 {mainReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(mainIndex, setMainIndex)}
-                    image={mainRecipeList.hits[mainIndex].recipe.image}
-                    recipeName={mainRecipeList.hits[mainIndex].recipe.label}
-                    time={mainRecipeList.hits[mainIndex].recipe.totalTime}
-                    ingredients={mainRecipeList.hits[mainIndex].recipe.ingredients.length}
+                    image={mainRecipeList[mainIndex].recipe.image}
+                    recipeName={mainRecipeList[mainIndex].recipe.label}
+                    time={mainRecipeList[mainIndex].recipe.totalTime}
+                    ingredients={mainRecipeList[mainIndex].recipe.ingredients.length}
                     back={() => lastItem(mainIndex, setMainIndex)}
                 /> : <p>Loading...</p>}
 
                 {dessertReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(dessertIndex, setDessertIndex)}
-                    image={dessertRecipeList.hits[dessertIndex].recipe.image}
-                    recipeName={dessertRecipeList.hits[dessertIndex].recipe.label}
-                    time={dessertRecipeList.hits[dessertIndex].recipe.totalTime}
-                    ingredients={dessertRecipeList.hits[dessertIndex].recipe.ingredients.length}
+                    image={dessertRecipeList[dessertIndex].recipe.image}
+                    recipeName={dessertRecipeList[dessertIndex].recipe.label}
+                    time={dessertRecipeList[dessertIndex].recipe.totalTime}
+                    ingredients={dessertRecipeList[dessertIndex].recipe.ingredients.length}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
-                /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, setDessertReqStatus)}>dessert</button>}
+                /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>dessert</button>}
             </div>
+            <button type="button" onClick={() => console.log(mainRecipeList)}>log restult</button>
     </>)
 }
 

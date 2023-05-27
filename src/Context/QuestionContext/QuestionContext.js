@@ -6,11 +6,13 @@ export const QuestionContext = createContext({});
 
 function QuestionContextProvider({children}) {
 
-    //tijdelijke plaatsing getStart voor coderen
     //TODO tijdelijke plaatsing verwijderen
     const getStart = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}`
 
+    //TODO recipeTime interactief maken
     const [cuisineType, setCuisineType]= useState('')
+    const [checkboxCombined, setCheckboxCombined] = useState('')
+    const [recipeTime, setRecipeTime]= useState("&time=10-20")
 
     function cuisineSetter(searchstring) {
         setCuisineType(searchstring)
@@ -54,6 +56,7 @@ function QuestionContextProvider({children}) {
         let optionListClone = [...optionList];
         optionListClone[i] = temp;
         setOptionList([...optionListClone]);
+        createRequest(optionList)
     }
 
     //functie voor het aanmaken van de GET request
@@ -66,26 +69,24 @@ function QuestionContextProvider({children}) {
             }
         }
         if (selectedOptions.length > 0) {
-            requestString = selectedOptions.join('')
         }
-        return requestString
+        requestString = selectedOptions.join('')
+        setCheckboxCombined(requestString)
     }
 
-    //functie die alle strings aan elkaar plak voor het GET request
-    function formulateGetRequest () {
-        const getRequestString =  createRequest(optionList)
-        return getRequestString
-    }
 
     // voor alles wat de context moet kunnen doorgeven
+
+    //TODO - haal createRequest uit questionContextData
 
     const questionContextData = {
         optionList: optionList,
         handleChange: handleChange,
         createRequest: createRequest,
-        formulateGetRequest: formulateGetRequest,
         cuisineType: cuisineType,
         cuisineSetter: cuisineSetter,
+        checkboxCombined:checkboxCombined,
+        recipeTime:recipeTime,
     }
 
 

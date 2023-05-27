@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import TerraceCard from "../TerraceCard/TerraceCard";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
+import styles from "./TerraceCardDisplay.module.scss"
 
 
 function TerraceCardDisplay () {
@@ -8,7 +9,7 @@ function TerraceCardDisplay () {
     const {cuisineSetter} = useContext(QuestionContext)
 
     return(
-       <>
+       <div className={styles["container-card-display"]}>
            <TerraceCard
            onClick={() => cuisineSetter('&cuisineType=Asian') }
            title='asian'
@@ -50,7 +51,7 @@ function TerraceCardDisplay () {
                title='south american'
            />
            <p>{cuisineType}</p>
-       </>
+       </div>
     )
 }
 

@@ -14,6 +14,8 @@ function AuthContextProvider({children}) {
 
     const navigate = useNavigate();
 
+    //TODO - waarom faalt hier een get request?
+    
     useEffect(() => {
         // haal de JWT op uit Local Storage
         const token = localStorage.getItem('token');

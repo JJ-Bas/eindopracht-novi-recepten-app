@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import Input from "../../components/Input/Input";
+import {useNavigate} from "react-router-dom";
 
 
 function SignUp() {
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,6 +30,7 @@ function SignUp() {
                 "role": ["user"]
             })
             console.log(result)
+            navigate('/signin')
         } catch (e) {
             console.error(e)
         }
@@ -46,18 +50,21 @@ function SignUp() {
                     label='naam'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}/>
+                {username > 6 ? <p></p>  : <p>je wachtwoord moet minstens 6 tekens bevatten</p>}
                 <Input
                     type='email'
                     id='email'
                     label='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}/>
+                {email.includes("@") === true ? <p></p>  : <p>dit is geen geldig email adres</p>}
                 <Input
                     type='password'
                     id='password'
                     label='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
+                {password > 6 ? <p></p>  : <p>je password moet minstens 6 tekens bevatten</p>}
                 <Input type='submit'/>
             </form>
             <label>

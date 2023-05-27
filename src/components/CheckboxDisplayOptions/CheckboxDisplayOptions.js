@@ -5,17 +5,19 @@ import styles from './CheckboxDisplayOptions.module.scss'
 function CheckboxDisplayOptions() {
 
 
-    //TODO -verwijder createRequest uit componentt
+    //TODO -maak een reset knop
+
 
     const {optionList} = useContext(QuestionContext)
     const {handleChange} = useContext(QuestionContext)
-    const {createRequest} = useContext(QuestionContext)
+    const {checkboxCombined} = useContext(QuestionContext)
 
 
 
     return (
         <>
         <h1>opties!!!!</h1>
+            <div className={styles['container-checkbox-display']}>
             {optionList.map(({ option, selected }, i) => (
                 <div key={i} className={styles['checkbox-button']}>
                     <label htmlFor={i} className={styles['toggle-wrapper']}>
@@ -31,6 +33,8 @@ function CheckboxDisplayOptions() {
                     <span>{option}</span>
                 </div>
             ))}
+            </div>
+            <p>{checkboxCombined}</p>
         </>
     )
 }
