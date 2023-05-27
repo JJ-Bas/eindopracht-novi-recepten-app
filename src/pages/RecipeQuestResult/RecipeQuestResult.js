@@ -71,6 +71,7 @@ function RecipeQuestResult() {
                     recipeName={starterRecipeList[starterIndex].recipe.label}
                     time={starterRecipeList[starterIndex].recipe.totalTime}
                     ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
+                    ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
                     link={starterRecipeList[starterIndex].recipe.url}
                     back={() => lastItem(starterIndex, setStarterIndex)}
                 /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>starter</button>}
@@ -92,6 +93,7 @@ function RecipeQuestResult() {
                     recipeName={dessertRecipeList[dessertIndex].recipe.label}
                     time={dessertRecipeList[dessertIndex].recipe.totalTime}
                     ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
+                    ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
                     link={dessertRecipeList[dessertIndex].recipe.url}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
                 /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>dessert</button>}

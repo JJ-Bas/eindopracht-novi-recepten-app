@@ -10,7 +10,6 @@ function RecipeResultDisplay({recipeName, image, time, ingredientsNumber, ingred
 
     function infoToggle(setting) {
         toggleRecipeInfoContainer(setting)
-        console.log(recipeInfoContainer)
     }
 
     return (
