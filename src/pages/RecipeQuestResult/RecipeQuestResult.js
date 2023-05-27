@@ -70,7 +70,8 @@ function RecipeQuestResult() {
                     image={starterRecipeList[starterIndex].recipe.image}
                     recipeName={starterRecipeList[starterIndex].recipe.label}
                     time={starterRecipeList[starterIndex].recipe.totalTime}
-                    ingredients={starterRecipeList[starterIndex].recipe.ingredients.length}
+                    ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
+                    link={starterRecipeList[starterIndex].recipe.url}
                     back={() => lastItem(starterIndex, setStarterIndex)}
                 /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>starter</button>}
 
@@ -79,7 +80,9 @@ function RecipeQuestResult() {
                     image={mainRecipeList[mainIndex].recipe.image}
                     recipeName={mainRecipeList[mainIndex].recipe.label}
                     time={mainRecipeList[mainIndex].recipe.totalTime}
-                    ingredients={mainRecipeList[mainIndex].recipe.ingredients.length}
+                    ingredientsNumber={mainRecipeList[mainIndex].recipe.ingredients.length}
+                    ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
+                    link={mainRecipeList[mainIndex].recipe.url}
                     back={() => lastItem(mainIndex, setMainIndex)}
                 /> : <p>Loading...</p>}
 
@@ -88,11 +91,12 @@ function RecipeQuestResult() {
                     image={dessertRecipeList[dessertIndex].recipe.image}
                     recipeName={dessertRecipeList[dessertIndex].recipe.label}
                     time={dessertRecipeList[dessertIndex].recipe.totalTime}
-                    ingredients={dessertRecipeList[dessertIndex].recipe.ingredients.length}
+                    ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
+                    link={dessertRecipeList[dessertIndex].recipe.url}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
                 /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>dessert</button>}
             </div>
-            <button type="button" onClick={() => console.log(mainRecipeList)}>log restult</button>
+            <button type="button" onClick={() => console.log(mainRecipeList)}>log result</button>
     </>)
 }
 
