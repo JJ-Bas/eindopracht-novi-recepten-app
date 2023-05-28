@@ -7,6 +7,8 @@ import SignUp from "./pages/SignUp/SignUp";
 import SignIn from "./pages/SignIn/SignIn";
 import Questionnaire from "./pages/Questionnaire/Questionnaire";
 import RecipeQuestResult from "./pages/RecipeQuestResult/RecipeQuestResult";
+import QuestionnaireTerrace from "./pages/Questionnaire/QuestionnaireTerrace";
+import QuestionnaireSliders from "./pages/Questionnaire/QuestionnaireSliders";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
                <Route path="/signin" element={ <SignIn />} />
                <Route path="/signup" element={<SignUp />}/>
                <Route path="/questionnaire" element={<Questionnaire />}/>
+               <Route path="/questionnaire/terrace" element={<QuestionnaireTerrace />}/>
+               <Route path="/questionnaire/sliders" element={<QuestionnaireSliders />}/>
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
 
            </Routes>

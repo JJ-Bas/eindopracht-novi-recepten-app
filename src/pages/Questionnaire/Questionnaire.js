@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import CheckboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
-import TerraceCardDisplay from "../../components/TerraceCardDisplay/TerraceCardDisplay";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Questionnaire() {
+
+    const navigate = useNavigate()
 
 
     return (
         <>
-            <input type="range" min="1" max="10"  id="preTime"/>
             <CheckboxDisplayOptions/>
-            <TerraceCardDisplay/>
+            <button type="button" onClick={() => navigate('/questionnaire/terrace') }>next</button>
         </>
     )
 }

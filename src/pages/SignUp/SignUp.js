@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from "axios";
 import Input from "../../components/Input/Input";
 import {useNavigate} from "react-router-dom";
+import styles from "../SignUp/SignUp.module.scss";
 
 
 function SignUp() {
@@ -38,39 +39,42 @@ function SignUp() {
 
     return (
         <>
-            <ul>
-                <li>username: jef</li>
-                <li>email : jef@novi.nl,</li>
-                <li>password : 123456</li>
-            </ul>
-            <form onSubmit={handleSignUp}>
-                <Input
-                    type='text'
-                    id='username'
-                    label='naam'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}/>
-                {username > 6 ? <p></p>  : <p>je wachtwoord moet minstens 6 tekens bevatten</p>}
-                <Input
-                    type='email'
-                    id='email'
-                    label='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}/>
-                {email.includes("@") === true ? <p></p>  : <p>dit is geen geldig email adres</p>}
-                <Input
-                    type='password'
-                    id='password'
-                    label='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}/>
-                {password > 6 ? <p></p>  : <p>je password moet minstens 6 tekens bevatten</p>}
-                <Input type='submit'/>
-            </form>
-            <label>
-                <input type='button' onClick={() => testRequest()}/>
-                testrequest
-            </label>
+            <div className="outer-container">
+                <div className={"inner-container " + styles['sign-up-container']}>
+                    <h2>register</h2>
+                    <form onSubmit={handleSignUp}>
+                        <Input
+                            type='text'
+                            id='username'
+                            label='naam'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}/>
+                        {username.length > 6 ? <p></p> : <p>je naam moet minstens 6 tekens bevatten</p>}
+                        <Input
+                            type='email'
+                            id='email'
+                            label='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}/>
+                        {email.includes("@") === true ? <p></p> : <p>dit is geen geldig email adres</p>}
+                        <Input
+                            type='password'
+                            id='password'
+                            label='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}/>
+                        {password.length > 6 ? <p></p> : <p>je password moet minstens 6 tekens bevatten</p>}
+                        <Input type='submit'/>
+                    </form>
+                    <label>
+                        <input type='button' value="register" onClick={() => testRequest()}
+                               disabled={username.length > 6 && password.length > 6 && email.includes("@") === true? false : true}/>
+                        testrequest
+                    </label>
+                </div>
+            </div>
+
+
         </>
     )
 }

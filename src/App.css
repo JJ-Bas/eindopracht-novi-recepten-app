@@ -28,3 +28,15 @@ h2 {
     text-transform: uppercase;
     font-size: 20px;
 }
+
+.outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.inner-container {
+    border-style: dashed;
+    border-color: #66bb6a;
+
+}
