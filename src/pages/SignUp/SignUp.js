@@ -21,6 +21,8 @@ function SignUp() {
         }
     }
 
+
+
     async function handleSignUp(e) {
         e.preventDefault()
         try {
@@ -64,12 +66,12 @@ function SignUp() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
                         {password.length > 6 ? <p></p> : <p>je password moet minstens 6 tekens bevatten</p>}
-                        <Input type='submit'/>
+                        //TODO waarom werkt de disabled submit niet?!
+                        <Input type='submit'  disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
                     </form>
                     <label>
-                        <input type='button' value="register" onClick={() => testRequest()}
-                               disabled={username.length > 6 && password.length > 6 && email.includes("@") === true? false : true}/>
-                        testrequest
+                        <input type='button'  value="test-request" onClick={() => testRequest()}
+                               disabled={username.length > 6 && password.length > 6 && email.includes("@") === true ? false : true}/>
                     </label>
                 </div>
             </div>

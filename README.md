@@ -1,75 +1,107 @@
--uitleg env. bestand en aanmaken eigen ID
--istall axios en jwt -decode?
--uses novi backend (link)
+# What to eat tonight? the application (temp name)
 
+## Description
 
-# Getting Started with Create React App
+This project is a website built using React. It utilizes the Edamam API to help users to find a recipe fitting to their
+needs.
+Users can browse and search the Edamam API recipe database or they have to option to use the recipefinder function to
+providem with a fitting selection of recipes to help them choose!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
 
-## Available Scripts
+To run the website locally, please follow these steps:
 
-In the project directory, you can run:
+1. Clone the repository to your local machine:
 
-### `npm start`
+   ```bash
+   git clone <repository_url>
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Navigate to the project directory:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```bash
+   cd <project_directory>
+   ```
 
-### `npm test`
+3. Install the required dependencies using npm:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To configure the project, you need to obtain an API key and ID from Edamam. Here's how you can do it:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Sign up at [https://www.edamam.com/](https://www.edamam.com/) to create an account.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. After signing up and logging in, navigate to your account settings or developer dashboard to obtain your API key and
+   ID.
 
-### `npm run eject`
+3. Create an `.env` file in the `src` directory of the project.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. In the `.env` file, add the following lines:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   REACT_APP_API_KEY=<your_api_key>
+   REACT_APP_API_ID=<your_api_id>
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   Replace `<your_api_key>` and `<your_api_id>` with the corresponding values you obtained from Edamam.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+Once you have installed the dependencies and configured the API key and ID, you can run the project locally using the
+following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This command starts the development server and launches the website in your default browser. You can access it by
+navigating to [http://localhost:3000](http://localhost:3000).
 
-### Code Splitting
+## Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This project relies on the following dependencies:
 
-### Analyzing the Bundle Size
+- [Edamam Recipe Search API](https://developer.edamam.com/edamam-recipe-api): This project uses the free developer
+  version of the Edamam Recipe Search API for retrieving recipe data. Please refer to the provided link for more
+  information on the API and its usage.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- JavaScript React: The project is built using React, a JavaScript library for building user interfaces. You can find
+  the documentation for React [here](https://react.dev/).
 
-### Making a Progressive Web App
+- NOVI Educational Backend: This project utilizes the NOVI Educational Backend for certain functionalities. The backend
+  is hosted on Heroku, a cloud platform. For more information on Heroku,
+  visit [https://www.heroku.com/](https://www.heroku.com/). You can find the documentation for the NOVI Educational
+  Backend [here](https://github.com/hogeschoolnovi/novi-educational-backend-documentation). Imported things to know
+  about this educational server is that it becomes inactive after not being used for a while. This application sends a
+  wake-up request to the server when mounting the application. The database of this server is deleted every hour so the
+  account created to login is only temporary.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Please ensure that these dependencies are properly set up and accessible in order to run the project successfully.
 
-### Advanced Configuration
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you would like to contribute to this project, you can follow these steps:
 
-### Deployment
+1. Fork the repository on GitHub.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. Clone your forked repository to your local machine.
 
-### `npm run build` fails to minify
+3. Create a new branch for your feature or bug fix:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. Make your changes and commit them with descriptive commit messages.
+
+5. Push your changes to your forked repository:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. Create a pull request on the original repository to merge your changes.

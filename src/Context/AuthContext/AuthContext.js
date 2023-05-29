@@ -7,7 +7,7 @@ export const AuthContext = createContext({});
 function AuthContextProvider({children}) {
     //voor het bijhouden van de login gegevens
     const [isAuth, toggleIsAuth] = useState({
-        isAuth:false,
+        isAuth: false,
         user: null,
         status: 'pending',
     })
@@ -15,11 +15,12 @@ function AuthContextProvider({children}) {
     const navigate = useNavigate();
 
     //TODO - waarom faalt hier een get request?
-    
+
     useEffect(() => {
+        //maak de heroku server wakker bij het laden van de pagina
+        testRequest()
         // haal de JWT op uit Local Storage
         const token = localStorage.getItem('token');
-
         // als er WEL een token is, haal dan opnieuw de gebruikersdata op
         if (token) {
             fetchUserData(token);
@@ -31,14 +32,24 @@ function AuthContextProvider({children}) {
                 status: 'done',
             });
         }
-    }, []);
+    }, [])
+
+    //heroku server wake-up call
+    async function testRequest(e) {
+        try {
+            const testResult = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all')
+            console.log(testResult)
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
 
     function login(JWT) {
         // zet de token in de Local Storage
         localStorage.setItem('token', JWT);
         // geef token en redirect-link mee aan de fetchUserData functie
-        fetchUserData( JWT, '/profile')
+        fetchUserData(JWT, '/profile')
         // link de gebruiker door naar de profielpagina
         // history.push('/profile');
     }
@@ -78,7 +89,7 @@ function AuthContextProvider({children}) {
                 status: 'done',
             });
 
-           //link na afhandeling login functie
+            //link na afhandeling login functie
             if (redirectUrl) {
                 navigate(redirectUrl);
             }
@@ -98,9 +109,9 @@ function AuthContextProvider({children}) {
     const contextData = {
         isAuth: isAuth.isAuth,
         user: isAuth.user,
-        login:login,
-        logout:logout,
-}
+        login: login,
+        logout: logout,
+    }
 
 
     return (
