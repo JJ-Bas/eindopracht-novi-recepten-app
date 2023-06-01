@@ -30,6 +30,10 @@ function NavBar() {
                     className="nav-link"
                     to="/quest-results"
                 >quest-result</NavLink></li>
+                <li><NavLink
+                    className="nav-link"
+                    to="/search-recipes"
+                >search page</NavLink></li>
             </ul>
         </nav>)
 }

@@ -9,6 +9,7 @@ import Questionnaire from "./pages/Questionnaire/Questionnaire";
 import RecipeQuestResult from "./pages/RecipeQuestResult/RecipeQuestResult";
 import QuestionnaireTerrace from "./pages/Questionnaire/QuestionnaireTerrace";
 import QuestionnaireSliders from "./pages/Questionnaire/QuestionnaireSliders";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                <Route path="/questionnaire/terrace" element={<QuestionnaireTerrace />}/>
                <Route path="/questionnaire/sliders" element={<QuestionnaireSliders />}/>
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
+               <Route path="/search-recipes" element={<SearchPage/>}/>
 
            </Routes>
        </div>
