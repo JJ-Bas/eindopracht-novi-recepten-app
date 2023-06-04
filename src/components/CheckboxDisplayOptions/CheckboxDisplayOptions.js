@@ -15,8 +15,6 @@ function CheckboxDisplayOptions() {
 
 
     return (
-        <>
-        <h1>opties!!!!</h1>
             <div className={styles['container-checkbox-display']}>
             {optionList.map(({ option, selected }, i) => (
                 <div key={i} className={styles['checkbox-button']}>
@@ -34,8 +32,6 @@ function CheckboxDisplayOptions() {
                 </div>
             ))}
             </div>
-            <p>{checkboxCombined}</p>
-        </>
     )
 }
 

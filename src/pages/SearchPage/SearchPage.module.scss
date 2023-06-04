@@ -1,0 +1,16 @@
+.search-page-inner-container {
+  width: 96vw;
+}
+.result-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-container ul{
+  border-color: orangered;
+  border-style: dashed;
+  width: 94vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

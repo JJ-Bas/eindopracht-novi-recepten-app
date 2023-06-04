@@ -1,5 +1,7 @@
 import React from "react";
 
+//TODO -gebruik ik dit component ergens??
+
 function Input({type, id, label, onChange, value}) {
     return (
         <>

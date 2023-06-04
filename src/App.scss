@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400&family=Montserrat:wght@300;700;900&display=swap');
-
+@import "./assets/variables.scss";
 *{
     padding: 0;
     margin: 0;
@@ -9,7 +9,8 @@
 
 body{
     font-family: 'Hind', sans-serif;
-    background-color: #264653;
+    background-image: url("./assets/images/concrete-texture-transparent.png"), linear-gradient(56deg, $background-color 10% , $background-color-gradient 90%);
+    background-color: $background-color;
     color: white;
 }
 
@@ -33,7 +34,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 .inner-container {
     border-style: dashed;

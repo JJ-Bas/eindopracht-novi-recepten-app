@@ -2,7 +2,8 @@ import React, {useContext, useState} from "react";
 import Input from "../../components/Input/Input";
 import axios from "axios";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
-import styles from "../../components/RecipeResultDisplay/RecipeResultDisplay.module.scss";
+import styles from "./SearchPage.module.scss"
+import SearchDisplayCard from "../../components/SearchDisplayCard/SearchDisplayCard";
 
 function SearchPage() {
 
@@ -29,7 +30,7 @@ function SearchPage() {
 
     return (<>
             <div className="outer-container">
-                <div className="inner-container">
+                <div className={"inner-container " + styles["search-page-inner-container"]}>
                     <form onSubmit={handleSubmit}>
                         <Input
                             type='text'
@@ -39,17 +40,22 @@ function SearchPage() {
                             onChange={(e) => setQuery(e.target.value)}/>
                         <button type="submit"> zoek</button>
                     </form>
-                    <div className="results-container">
+                    <div className={styles['result-container']}>
                         <button type="button" onClick={() => console.log(result)}>test log result</button>
+                        <ul>
                         {searchRequestState === "done" &&
                             result.hits.map((resultMap) => {
                                 return (
-                                    <article key={resultMap.recipe.label}>
-                                        <img src={resultMap.recipe.image} alt={resultMap.recipe.label}/>
-                                        <p>{resultMap.recipe.label}</p>
-                                    </article>
+                                <SearchDisplayCard
+                                    key={resultMap.recipe.shareAs}
+                                    label={resultMap.recipe.label}
+                                    image={resultMap.recipe.image}
+                                    link={resultMap.recipe.url}
+                                />
                                 )
                             })}
+                        </ul>
+
                     </div>
                 </div>
             </div>

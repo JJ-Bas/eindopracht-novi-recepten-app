@@ -1,8 +1,6 @@
+@import "src/assets/variables";
 
 .container-checkbox-display {
-  border-style: solid;
-  border-color: red;
-  //test
   width: 60vw;
   height: 530px;
   display: flex;
@@ -13,9 +11,7 @@
 // opmaak slider button
 
 .checkbox-button {
-  border-style: solid;
-  border-color: orange;
-  //test
+  background-color: $card-background-color;
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -23,6 +19,7 @@
   height: 50px;
   padding: 4px;
   margin: 4px;
+  box-shadow: $shadow-color 1.95px 1.95px 2.6px;
 }
 
 .toggle-wrapper {

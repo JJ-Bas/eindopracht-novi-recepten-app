@@ -10,8 +10,13 @@ function Questionnaire() {
 
     return (
         <>
-            <CheckboxDisplayOptions/>
-            <button type="button" onClick={() => navigate('/questionnaire/terrace') }>next</button>
+            <div className="outer-container">
+                <div className="inner-container">
+                    <CheckboxDisplayOptions/>
+                    <button type="button" onClick={() => navigate('/questionnaire/terrace')}>next</button>
+                </div>
+            </div>
+
         </>
     )
 }
