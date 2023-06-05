@@ -3,10 +3,12 @@ import {AuthContext} from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Input from "../../components/Input/Input";
+import styles from "./Profile.module.scss"
 
 
 function Profile() {
     const navigate = useNavigate()
+    const [changeForm, toggleChangeForm] = useState(false)
     //state voor het invullen van de profile data form
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -32,13 +34,14 @@ function Profile() {
                             "Content-Type": "application/json", Authorization: `Bearer ${token}`,
                         },
                     });
-                    setProfileData(result.data);
+                    setProfileData(result);
                     setStatus('done')
                 } catch (e) {
                     console.error(e);
-                    if (e.status === 401) {
-                        navigate("/")
+                    if (e.response.status === 401) {
+                        navigate("/signin")
                     } else {
+                        console.log(e)
                     }
                 }
             } else {
@@ -71,22 +74,29 @@ function Profile() {
 
     return (<>
         <div className="outer-container">
-            <div className="inner-container"> {status === 'done' ? <div>
-                <p>profile</p>
-                <ul>
-                    <li>naam: {user.username}</li>
-                    <li>{user.id}</li>
-                    <li>email: {user.email}</li>
-                    <li>{user.info}</li>
-                    <li>{user.roles}</li>
-                </ul>
-                <label>
-                    <input type='button' onClick={() => logout()}/>
-                    log out
-                </label>
-            </div> : <p>Loading...</p>}
+            <div className={"inner-container " + styles["profile-container"]}>
+                {status === 'done' ? <>
+                    <div className={styles["profile-text"]}>
+                        <h2>profile</h2>
+                        <ul>
+                            <li>naam: {user.username}</li>
+                            <li>email: {user.email}</li>
+                            <li>{user.info}</li>
+                            <li>{user.roles}</li>
+                        </ul>
+                        <button type="button" onClick={() => toggleChangeForm(true)}>change profile</button>
+                        <label>
+                            <input type='button' onClick={() => logout()}/>
+                            logout
+                        </label>
+                    </div>
+                    <div className={styles["profile-picture"]}></div>
+                </> : <p>Loading...</p>}
 
-                <form onSubmit={changeProfileData}>
+                {changeForm === true ? <div className={styles["profile-change-popup"]}>
+                    <div className={styles["top-bar"]}>
+                        <button type="button" onClick={() => toggleChangeForm(false)}> close </button></div>
+                    <form  onSubmit={changeProfileData}>
                     <Input
                         type='text'
                         id='username'
@@ -111,7 +121,7 @@ function Profile() {
                     //TODO waarom werkt de disabled submit niet?!
                     <Input type='submit'
                            disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
-                </form>
+                </form></div> : "" }
             </div>
         </div>
     </>)

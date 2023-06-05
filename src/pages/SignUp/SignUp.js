@@ -8,6 +8,8 @@ import styles from "../SignUp/SignUp.module.scss";
 function SignUp() {
     const navigate = useNavigate();
 
+    const [errorMessage, setErrorMessage] = useState("")
+
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,10 +23,9 @@ function SignUp() {
         }
     }
 
-
-
     async function handleSignUp(e) {
         e.preventDefault()
+        setErrorMessage("")
         try {
             const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
                 "username": username,
@@ -36,6 +37,13 @@ function SignUp() {
             navigate('/signin')
         } catch (e) {
             console.error(e)
+            if (e.response.status === 400) {
+                setErrorMessage(e.response.data.message)
+            } else if (e.response.status === 401) {
+                setErrorMessage(e.response.data.message)
+            } else {
+                console.log(e)
+            }
         }
     }
 
@@ -67,10 +75,12 @@ function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}/>
                         {password.length > 6 ? <p></p> : <p>je password moet minstens 6 tekens bevatten</p>}
                         //TODO waarom werkt de disabled submit niet?!
-                        <Input type='submit'  disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
+                        <Input type='submit'
+                               disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
                     </form>
+                    <p>{errorMessage}</p>
                     <label>
-                        <input type='button'  value="test-request" onClick={() => testRequest()}
+                        <input type='button' value="test-request" onClick={() => testRequest()}
                                disabled={username.length > 6 && password.length > 6 && email.includes("@") === true ? false : true}/>
                     </label>
                 </div>

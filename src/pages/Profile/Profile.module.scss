@@ -1,0 +1,54 @@
+@import "src/assets/variables";
+
+.profile-container {
+  position: relative;
+  display: flex;
+  padding: 20px;
+  border-radius: 6px;
+  width: 800px;
+  height: 400px;
+  background-color: $card-background-color;
+}
+
+.profile-text {
+  width: 50%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.profile-picture {
+  width: 50%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: red;
+}
+
+
+.profile-change-popup {
+  background-color:  $shadow-color;
+  position: absolute;
+  left: 0px;
+  top:0px;
+  width: 800px;
+  height: 400px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #dd00ff;
+  box-shadow: $shadow-color 40px 40px 140px, $shadow-color -40px -40px 140px, $shadow-color 40px -40px 140px, $shadow-color -40px 40px 140px;;
+
+
+}
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+}
+
+.profile-change-popup form {
+  display: flex;
+  flex-direction: column;
+}

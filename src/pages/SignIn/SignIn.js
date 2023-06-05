@@ -12,6 +12,7 @@ function SignIn() {
 
     const {login} = useContext(AuthContext)
 
+    const [errorMessage, setErrorMessage] = useState("")
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -26,6 +27,7 @@ function SignIn() {
             login(result.data.accessToken)
         } catch (e) {
             console.error(e)
+            setErrorMessage("this login is invalid")
         }
     }
 
@@ -49,6 +51,7 @@ function SignIn() {
                             onChange={(e) => setPassword(e.target.value)}/>
                         <Input type='submit'value="login"/>
                     </form>
+                    <p>{errorMessage}</p>
                     <p>nog geen account?</p>
                     <button type="button" onClick={() => navigate("/signup")}>register</button>
                 </div>

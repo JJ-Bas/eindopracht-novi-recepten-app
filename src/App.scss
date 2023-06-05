@@ -10,7 +10,6 @@
 body{
     font-family: 'Hind', sans-serif;
     background-image: url("./assets/images/concrete-texture-transparent.png"), linear-gradient(56deg, $background-color 10% , $background-color-gradient 90%);
-    background-color: $background-color;
     color: white;
 }
 
@@ -37,7 +36,5 @@ h2 {
     min-height: 100vh;
 }
 .inner-container {
-    border-style: dashed;
-    border-color: #66bb6a;
 
 }
