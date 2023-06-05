@@ -59,6 +59,18 @@ function QuestionContextProvider({children}) {
         createRequest(optionList)
     }
 
+    function resetForm() {
+       for (let i = 0; i < optionList.length; i++) {
+           if (optionList[i].selected === true) {
+               let temp = optionList[i];
+               temp.selected = false;
+               let optionListClone = [...optionList];
+               optionListClone[i] = temp;
+               setOptionList([...optionListClone]);
+           }
+       }
+    }
+
     //functie voor het aanmaken van de GET request
     function createRequest(list) {
         let requestString = '';
@@ -86,6 +98,7 @@ function QuestionContextProvider({children}) {
         cuisineType: cuisineType,
         cuisineSetter: cuisineSetter,
         checkboxCombined:checkboxCombined,
+        resetForm:resetForm,
         recipeTime:recipeTime,
     }
 

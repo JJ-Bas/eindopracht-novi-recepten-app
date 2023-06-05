@@ -10,9 +10,7 @@ function CheckboxDisplayOptions() {
 
     const {optionList} = useContext(QuestionContext)
     const {handleChange} = useContext(QuestionContext)
-    const {checkboxCombined} = useContext(QuestionContext)
-
-
+    const {resetForm} = useContext(QuestionContext)
 
     return (
             <div className={styles['container-checkbox-display']}>
@@ -31,6 +29,9 @@ function CheckboxDisplayOptions() {
                     <span>{option}</span>
                 </div>
             ))}
+                <button type="button" className={styles["reset-button"] + " " + styles["checkbox-button"] }
+                onClick={() => resetForm()}
+                > reset </button>
             </div>
     )
 }

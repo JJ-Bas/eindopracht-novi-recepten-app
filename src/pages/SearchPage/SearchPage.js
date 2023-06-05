@@ -4,10 +4,14 @@ import axios from "axios";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 import styles from "./SearchPage.module.scss"
 import SearchDisplayCard from "../../components/SearchDisplayCard/SearchDisplayCard";
+import checkboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
+import CheckboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
 
 function SearchPage() {
 
     const {checkboxCombined} = useContext(QuestionContext)
+
+    const [optionsPopUp, toggleOptionsPopUp] = useState(false)
 
     const [result, setResult] = useState({})
     const [query, setQuery] = useState("")
@@ -31,17 +35,21 @@ function SearchPage() {
     return (<>
             <div className="outer-container">
                 <div className={"inner-container " + styles["search-page-inner-container"]}>
+                    <div className={styles["search-bar"]}>
+                        <button type="button" onClick={() => toggleOptionsPopUp(!optionsPopUp)}> diët options</button>
                     <form onSubmit={handleSubmit}>
                         <Input
                             type='text'
                             id='query'
-                            label='zoek'
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}/>
-                        <button type="submit"> zoek</button>
+                        <button type="submit"> search</button>
                     </form>
+                    </div>
+                    <div className={styles["diet-pop-up"]}>
+                        {optionsPopUp === true ? <CheckboxDisplayOptions/> : ""}
+                    </div>
                     <div className={styles['result-container']}>
-                        <button type="button" onClick={() => console.log(result)}>test log result</button>
                         <ul>
                         {searchRequestState === "done" &&
                             result.hits.map((resultMap) => {
