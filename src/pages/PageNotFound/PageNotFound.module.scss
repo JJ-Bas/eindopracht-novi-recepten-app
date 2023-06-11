@@ -1,0 +1,13 @@
+@import "src/assets/variables";
+
+.page-not-found-container {
+  display: flex;
+  height: 200px;
+  width: 450px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: $card-background-color;
+  box-shadow: $shadow-color 1.95px 1.95px 2.6px;
+}

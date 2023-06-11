@@ -1,4 +1,5 @@
 import React, {createContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 export const QuestionContext = createContext({});
@@ -6,8 +7,7 @@ export const QuestionContext = createContext({});
 
 function QuestionContextProvider({children}) {
 
-    //TODO tijdelijke plaatsing verwijderen
-    const getStart = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}`
+    const navigate = useNavigate()
 
     //TODO recipeTime interactief maken
     const [cuisineType, setCuisineType]= useState('')
@@ -16,13 +16,15 @@ function QuestionContextProvider({children}) {
 
     function cuisineSetter(searchstring) {
         setCuisineType(searchstring)
+        navigate("/quest-results")
     }
+
     // lijst met checkboxen die gemaakt moet worden
     const [optionList, setOptionList] = useState([
-            {option: 'Alcohol-Free', selected: false, string: '&health=alcohol-free'},
-            {option: 'Celery-Free', selected: false, string: '&health=celery-free'},
-            {option: 'Crustcean-Free', selected: false, string: '&health=crustacean-free'},
-            {option: 'Dairy-Free', selected: false, string: '&health=dairy-free'},
+            {option: 'alcohol-free', selected: false, string: '&health=alcohol-free'},
+            {option: 'celery-free', selected: false, string: '&health=celery-free'},
+            {option: 'crustcean-free', selected: false, string: '&health=crustacean-free'},
+            {option: 'dairy-free', selected: false, string: '&health=dairy-free'},
             {option: 'egg-free', selected: false, string: '&health=egg-free'},
             {option: 'fish-free', selected: false, string: '&health=fish-free'},
             {option: 'gluten-free', selected: false, string: '&health=gluten-free'},

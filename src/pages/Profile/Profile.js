@@ -19,7 +19,6 @@ function Profile() {
     const [profileData, setProfileData] = useState({})
     const [status, setStatus] = useState('pending')
     const {user} = useContext(AuthContext)
-    const {logout} = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -52,6 +51,9 @@ function Profile() {
         fetchProfileData();
     }, [])
 
+    function uploadProfilePicture () {
+        console.log("upload-picture")
+    }
     //TODO -maak deze functie af
 
     async function changeProfileData() {
@@ -72,6 +74,7 @@ function Profile() {
     //TODO - aanpassen gebruikgegevens PUT /api/user
     // - uploaden foto
 
+
     return (<>
         <div className="outer-container">
             <div className={"inner-container " + styles["profile-container"]}>
@@ -85,12 +88,10 @@ function Profile() {
                             <li>{user.roles}</li>
                         </ul>
                         <button type="button" onClick={() => toggleChangeForm(true)}>change profile</button>
-                        <label>
-                            <input type='button' onClick={() => logout()}/>
-                            logout
-                        </label>
                     </div>
-                    <div className={styles["profile-picture"]}></div>
+                    <div className={styles["profile-picture"]}>
+                        <input type="file" id="picture-upload"  accept="image/png, image/jpg, image/jpeg" onClick={uploadProfilePicture}/>
+                    </div>
                 </> : <p>Loading...</p>}
 
                 {changeForm === true ? <div className={styles["profile-change-popup"]}>

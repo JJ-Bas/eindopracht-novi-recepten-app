@@ -4,7 +4,6 @@ import axios from "axios";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 import styles from "./SearchPage.module.scss"
 import SearchDisplayCard from "../../components/SearchDisplayCard/SearchDisplayCard";
-import checkboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
 import CheckboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
 
 function SearchPage() {

@@ -29,19 +29,17 @@
 
 
 .profile-change-popup {
-  background-color:  $shadow-color;
+  background-color: $shadow-color;
   position: absolute;
   left: 0px;
-  top:0px;
+  top: 0px;
   width: 800px;
   height: 400px;
   border-width: 2px;
-  border-style: solid;
-  border-color: #dd00ff;
   box-shadow: $shadow-color 40px 40px 140px, $shadow-color -40px -40px 140px, $shadow-color 40px -40px 140px, $shadow-color -40px 40px 140px;;
 
-
 }
+
 .top-bar {
   display: flex;
   justify-content: flex-end;
@@ -49,6 +47,7 @@
 }
 
 .profile-change-popup form {
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }

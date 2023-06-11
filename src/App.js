@@ -10,6 +10,7 @@ import RecipeQuestResult from "./pages/RecipeQuestResult/RecipeQuestResult";
 import QuestionnaireTerrace from "./pages/Questionnaire/QuestionnaireTerrace";
 import QuestionnaireSliders from "./pages/Questionnaire/QuestionnaireSliders";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                <Route path="/questionnaire/sliders" element={<QuestionnaireSliders />}/>
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
                <Route path="/search-recipes" element={<SearchPage/>}/>
+               <Route path="*" element={<PageNotFound/>}/>
 
            </Routes>
        </div>

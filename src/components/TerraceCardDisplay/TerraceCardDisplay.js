@@ -16,7 +16,6 @@ import southAmericaTerrace from "../../assets/images/terrace-pictures/south-amer
 
 
 function TerraceCardDisplay () {
-    const {cuisineType} = useContext(QuestionContext)
     const {cuisineSetter} = useContext(QuestionContext)
 
     return(
@@ -71,7 +70,6 @@ function TerraceCardDisplay () {
                image={southAmericaTerrace}
                title='south american'
            />
-           <p>{cuisineType}</p>
        </div>
     )
 }
