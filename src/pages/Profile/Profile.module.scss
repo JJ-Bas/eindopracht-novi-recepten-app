@@ -13,18 +13,15 @@
 .profile-text {
   width: 50%;
   border-width: 2px;
-  border-style: solid;
-  border-color: orange;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-left: 30px;
 }
 
 .profile-picture {
   width: 50%;
   border-width: 2px;
-  border-style: solid;
-  border-color: red;
 }
 
 

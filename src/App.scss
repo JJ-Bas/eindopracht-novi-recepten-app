@@ -29,17 +29,10 @@ img {
 }
 
 .outer-container {
-  border-style: solid;
-  border-color: orange;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-}
-
-.inner-container {
-  border-style: solid;
-  border-color: red;
 }
 
 .styled-button {

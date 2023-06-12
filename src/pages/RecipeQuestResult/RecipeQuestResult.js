@@ -3,13 +3,16 @@ import RecipeResultDisplay from "../../components/RecipeResultDisplay/RecipeResu
 import axios from "axios";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 import './RecipeQuestResult.scss'
+import {useNavigate} from "react-router-dom";
 
 function RecipeQuestResult() {
 
+    const navigate = useNavigate()
     const {cuisineType} = useContext(QuestionContext)
     const {checkboxCombined} = useContext(QuestionContext)
     const {recipeTime} = useContext(QuestionContext)
 
+    const [error, setError] = useState(false)
     // state items voor het laden van de pagina
     const [starterReqStatus, setStarterReqStatus] = useState('pending')
     const [mainReqStatus, setMainReqStatus] = useState('pending')
@@ -23,21 +26,23 @@ function RecipeQuestResult() {
     const [mainIndex, setMainIndex] = useState(0)
     const [dessertIndex, setDessertIndex] = useState(0)
 
-    //useEffect vuurt get request af naar de edamamAPI gebaseerd op de status van de items die uit de QuestionContext worden gehaald
     //TODO - zorg dat de API request worden beinvloed door de opties van de CheckboxDisplay
-    //     - zorg ervoor dat de API random recepten terug geeft
+    //
 
     async function fetchData(mealTypeString, cuisineTypeString, setlist, healthOptionString, setLoadingStatus) {
         try {
-            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}&random=true${recipeTime}${mealTypeString}${cuisineTypeString}${healthOptionString}`);
+                       const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}&random=true${recipeTime}${mealTypeString}${cuisineTypeString}${healthOptionString}`);
             setlist(result.data.hits);
             setLoadingStatus('done')
         } catch (e) {
             console.error(e)
+            setError(true)
+            setLoadingStatus('done')
         }
     }
 
     useEffect(() => {
+        setError(false)
         fetchData('&dishType=main-course', cuisineType, setMainRecipeList, checkboxCombined, setMainReqStatus)
     }, [])
 
@@ -59,12 +64,11 @@ function RecipeQuestResult() {
         }
     }
 
-    //TODO -opmaak van de starter en dessert request knop
-
     return (
-        <div className="outer-container" >
+        <div className="outer-container">
             <div className='result-container'>
-                {starterReqStatus === 'done' ? <RecipeResultDisplay
+                {starterReqStatus === 'done' ? (starterRecipeList.length > 0 ? (
+                    <RecipeResultDisplay
                     next={() => nextItem(starterIndex, setStarterIndex)}
                     image={starterRecipeList[starterIndex].recipe.image}
                     recipeName={starterRecipeList[starterIndex].recipe.label}
@@ -73,29 +77,41 @@ function RecipeQuestResult() {
                     ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
                     link={starterRecipeList[starterIndex].recipe.url}
                     back={() => lastItem(starterIndex, setStarterIndex)}
-                /> : <button type="button" className="get-button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>get starter</button>}
+                />
+                ) : (
+                    <button className="get-button">Sorry! No recipes found.</button>
+                )) : (
+                    <button type="button" className="get-button"
+                            onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>get
+                        starter</button>)}
 
-                {mainReqStatus === 'done' ? <RecipeResultDisplay
-                    next={() => nextItem(mainIndex, setMainIndex)}
-                    image={mainRecipeList[mainIndex].recipe.image}
-                    recipeName={mainRecipeList[mainIndex].recipe.label}
-                    time={mainRecipeList[mainIndex].recipe.totalTime}
-                    ingredientsNumber={mainRecipeList[mainIndex].recipe.ingredients.length}
-                    ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
-                    link={mainRecipeList[mainIndex].recipe.url}
-                    back={() => lastItem(mainIndex, setMainIndex)}
-                /> : <p>Loading...</p>}
+                {mainReqStatus === 'done' ? (error === false ? (
+                    <RecipeResultDisplay
+                        next={() => nextItem(mainIndex, setMainIndex)}
+                        image={mainRecipeList[mainIndex].recipe.image}
+                        recipeName={mainRecipeList[mainIndex].recipe.label}
+                        time={mainRecipeList[mainIndex].recipe.totalTime}
+                        ingredientsNumber={mainRecipeList[mainIndex].recipe.ingredients.length}
+                        ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
+                        link={mainRecipeList[mainIndex].recipe.url}
+                        back={() => lastItem(mainIndex, setMainIndex)}
+                    />) : (<button className="get-button" onClick={() =>navigate("/questionnaire")}>Sorry! No recipes found. try again</button>)):(<p>Loading...</p>)}
 
-                {dessertReqStatus === 'done' ? <RecipeResultDisplay
-                    next={() => nextItem(dessertIndex, setDessertIndex)}
-                    image={dessertRecipeList[dessertIndex].recipe.image}
-                    recipeName={dessertRecipeList[dessertIndex].recipe.label}
-                    time={dessertRecipeList[dessertIndex].recipe.totalTime}
-                    ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
-                    ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
-                    link={dessertRecipeList[dessertIndex].recipe.url}
-                    back={() => lastItem(dessertIndex, setDessertIndex)}
-                /> : <button type="button"  className="get-button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>get dessert</button>}
+                {dessertReqStatus === 'done' ? (dessertRecipeList.length > 0 ? (
+                        <RecipeResultDisplay
+                            next={() => nextItem(dessertIndex, setDessertIndex)}
+                            image={dessertRecipeList[dessertIndex].recipe.image}
+                            recipeName={dessertRecipeList[dessertIndex].recipe.label}
+                            time={dessertRecipeList[dessertIndex].recipe.totalTime}
+                            ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
+                            ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
+                            link={dessertRecipeList[dessertIndex].recipe.url}
+                            back={() => lastItem(dessertIndex, setDessertIndex)}
+                        />) : (<button className="get-button">Sorry! No recipes found.</button>)
+                ) : (
+                    <button type="button" className="get-button"
+                            onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>get
+                        dessert</button>)}
             </div>
         </div>)
 }

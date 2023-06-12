@@ -38,6 +38,9 @@ function SearchPage() {
                     <button type="button" className="basic-button"
                             onClick={() => toggleOptionsPopUp(!optionsPopUp)}> diët options
                     </button>
+
+                    <button type="button" onClick={() => console.log(result)} ></button>
+                    {result.count === 0 ? <p>no result</p> :  <p>result!</p>}
                     <form onSubmit={handleSubmit}>
                         <Input
                             type='text'
@@ -49,7 +52,9 @@ function SearchPage() {
                     </form>
                 </div>
                 <div className={styles["diet-pop-up"]}>
-                    {optionsPopUp === true ? <CheckboxDisplayOptions/> : ""}
+
+                    {optionsPopUp === true ?
+                        <><button className="basic-button" onClick={() => toggleOptionsPopUp(false) }>close</button><CheckboxDisplayOptions/></> : ""}
                 </div>
                 <div className={styles['result-container']}>
                     <ul>
@@ -62,8 +67,10 @@ function SearchPage() {
                                         image={resultMap.recipe.image}
                                         link={resultMap.recipe.url}
                                     />
+
                                 )
                             })}
+                        {result.count === 0 ? <p>no result</p> : <p></p>}
                     </ul>
 
                 </div>

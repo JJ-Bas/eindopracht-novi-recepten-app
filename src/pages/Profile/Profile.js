@@ -4,6 +4,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Input from "../../components/Input/Input";
 import styles from "./Profile.module.scss"
+import chefHat from "../../assets/images/chef-hat.png"
 
 
 function Profile() {
@@ -90,7 +91,8 @@ function Profile() {
                         <button type="button" className="basic-button" onClick={() => toggleChangeForm(true)}>change profile</button>
                     </div>
                     <div className={styles["profile-picture"]}>
-                        <input type="file" id="picture-upload"  accept="image/png, image/jpg, image/jpeg" onClick={uploadProfilePicture}/>
+                        <img src={chefHat}/>
+
                     </div>
                 </> : <p>Loading...</p>}
 

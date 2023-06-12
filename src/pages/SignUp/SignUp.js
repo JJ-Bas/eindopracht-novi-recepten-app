@@ -59,7 +59,7 @@ function SignUp() {
                             label='name'
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}/>
-                        {username.length > 6 ? <p></p> : <p>must contain at least 6 characters</p>}
+                        {username.length > 5 ? <p></p> : <p>must contain at least 6 characters</p>}
                         <Input
                             type='email'
                             id='email'
@@ -73,7 +73,7 @@ function SignUp() {
                             label='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
-                        {password.length > 6 ? <p></p> : <p>must contain at least 6 characters</p>}
+                        {password.length > 5 ? <p></p> : <p>must contain at least 6 characters</p>}
                         <Input type='submit' value="register"
                                disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
                     </form>
