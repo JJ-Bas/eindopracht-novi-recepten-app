@@ -1,68 +1,109 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400&family=Montserrat:wght@300;700;900&display=swap');
 @import "./assets/variables.scss";
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
 }
 
-body{
-    font-family: 'Hind', sans-serif;
-    background-image: url("./assets/images/concrete-texture-transparent.png"), linear-gradient(56deg, $background-color 10% , $background-color-gradient 90%);
-    color: $text-color-light;
+body {
+  font-family: 'Hind', sans-serif;
+  background-image: url("./assets/images/concrete-texture-transparent.png"), linear-gradient(56deg, $background-color 10%, $background-color-gradient 90%);
+  color: $text-color-light;
 }
 
-li{
-    font-size: 14px;
-}
-
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    font-size: 16px;
+li {
+  font-size: 14px;
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+img {
+  width: 100%;
 }
 
 .outer-container {
-    border-style: solid;
-    border-color: orange;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  border-style: solid;
+  border-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .inner-container {
-    border-style: solid;
-    border-color:red;
+  border-style: solid;
+  border-color: red;
 }
 
 .styled-button {
-    border-style: none;
-    width: 180px;
-    height: 50px;
-    background-color: $card-background-color;
-    border-radius: 25px;
-    color:white;
-    font-family: inherit;
-    font-size: 16px;
-    box-shadow: $shadow-color 1.95px 1.95px 2.6px;
+  border-style: none;
+  width: 180px;
+  height: 50px;
+  background-color: $card-background-color;
+  border-radius: 25px;
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  box-shadow: $shadow-color 1.95px 1.95px 2.6px;
 }
 
 input {
-    font-family: inherit;
-    color: $text-color-dark;
-    padding: 3px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-    border-style: none;
+  font-family: inherit;
+  color: $text-color-dark;
+  padding: 3px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 2px;
+  border-style: none;
 }
 
+.basic-button {
+  margin: 10px;
+  border-style: none;
+  background: none;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+/*//background images//*/
+
+.app-body {
+  position: relative;
+}
+
+.rosemary {
+  position: absolute;
+  display: flex;
+  width: 30vw;
+  left: -10%;
+  top: 10%;
+  z-index: -1;
+  transform: rotate(-50deg);
+}
+
+.pepper{
+  position: absolute;
+  display: flex;
+  width: 30vw;
+  right: -10%;
+  bottom: 20%;
+  z-index: -1;
+  transform: rotate(-50deg);
+}
+
+.scale-image {
+  display: block
+}

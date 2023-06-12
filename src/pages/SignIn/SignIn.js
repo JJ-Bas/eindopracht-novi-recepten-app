@@ -35,7 +35,7 @@ function SignIn() {
         <>
             <div className="outer-container">
                 <div className={"inner-container "+styles['sign-in-container'] }>
-                    <h1>login</h1>
+                    <h2>login</h2>
                     <form onSubmit={handleSignIn}>
                         <Input
                             type='text'

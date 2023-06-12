@@ -63,7 +63,6 @@ function RecipeQuestResult() {
 
     return (
         <>
-            <button type='button' onClick={() => console.log(mainRecipeList)}>recipeList</button>
             <div className='temporary-container'>
                 {starterReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(starterIndex, setStarterIndex)}

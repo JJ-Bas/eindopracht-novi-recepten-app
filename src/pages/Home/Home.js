@@ -1,24 +1,34 @@
-import React from 'react';
-import {useState} from "react";
-import axios from "axios";
+import React, {useContext} from 'react';
+import "./Home.scss"
+import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../Context/AuthContext/AuthContext";
 
 function Home() {
-    const [recipeList, setRecipeList] = useState({})
 
-    async function fetchData() {
-        try {
-            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=chicken&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}`);
-            setRecipeList(result.data);
-        } catch (e) {
-            console.error(e)
-        }
-    }
+    const navigate = useNavigate()
+
+    const {isAuth} = useContext(AuthContext)
+
+
+
 
     return (
 
     <>
-        <button type='button' onClick={() => fetchData()}>get data</button>
-        <button type="button" onClick={() => console.log(recipeList)}> console.log</button>
+        <div className="outer-container">
+            <div className="inner-container home-container">
+                <h1>HEY</h1>
+                <h2 className="sub-title">what to cook today?</h2>
+                <article>
+                <p className="intro"> your recipe matchmaker to help you pick your daily dish.</p>
+                    {isAuth === false ?
+                    <button type="button" className="basic-button" onClick={() => navigate("/signin")}>login</button> : <>
+                    <button type="button" className="basic-button" onClick={() => navigate("/signup")}>help me choose</button>
+                    <button type="button" className="basic-button" onClick={() => navigate("/search-page")}>search page</button>
+                        </>}
+                </article>
+            </div>
+        </div>
     </>
 
 )

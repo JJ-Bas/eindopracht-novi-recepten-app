@@ -11,13 +11,18 @@ import QuestionnaireTerrace from "./pages/Questionnaire/QuestionnaireTerrace";
 import QuestionnaireSliders from "./pages/Questionnaire/QuestionnaireSliders";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import rosemary from "./assets/images/rosemary.png"
+import yellowPepper from "./assets/images/pepper-yellow.png"
+import React from "react";
 
 
 function App() {
   return (
    <>
        <NavBar />
-       <div>
+       <div className="app-body">
+           <span className="rosemary"> <img className="scale-image" src={rosemary} /></span>
+           <span className="pepper"> <img className="scale-image" src={yellowPepper} /></span>
            <Routes>
                <Route exact path="/" element={<Home />}/>
                <Route path="/profile" element={<Profile /> }/>
@@ -29,7 +34,6 @@ function App() {
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
                <Route path="/search-recipes" element={<SearchPage/>}/>
                <Route path="*" element={<PageNotFound/>}/>
-
            </Routes>
        </div>
    </>
