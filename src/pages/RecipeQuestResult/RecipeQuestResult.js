@@ -62,8 +62,8 @@ function RecipeQuestResult() {
     //TODO -opmaak van de starter en dessert request knop
 
     return (
-        <>
-            <div className='temporary-container'>
+        <div className="outer-container" >
+            <div className='result-container'>
                 {starterReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(starterIndex, setStarterIndex)}
                     image={starterRecipeList[starterIndex].recipe.image}
@@ -73,7 +73,7 @@ function RecipeQuestResult() {
                     ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
                     link={starterRecipeList[starterIndex].recipe.url}
                     back={() => lastItem(starterIndex, setStarterIndex)}
-                /> : <button type="button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>starter</button>}
+                /> : <button type="button" className="get-button" onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>get starter</button>}
 
                 {mainReqStatus === 'done' ? <RecipeResultDisplay
                     next={() => nextItem(mainIndex, setMainIndex)}
@@ -95,10 +95,9 @@ function RecipeQuestResult() {
                     ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
                     link={dessertRecipeList[dessertIndex].recipe.url}
                     back={() => lastItem(dessertIndex, setDessertIndex)}
-                /> : <button type="button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>dessert</button>}
+                /> : <button type="button"  className="get-button" onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>get dessert</button>}
             </div>
-            <button type="button" onClick={() => console.log(mainRecipeList)}>log result</button>
-    </>)
+        </div>)
 }
 
 export default RecipeQuestResult

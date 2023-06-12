@@ -23,7 +23,7 @@ function Home() {
                 <p className="intro"> your recipe matchmaker to help you pick your daily dish.</p>
                     {isAuth === false ?
                     <button type="button" className="basic-button" onClick={() => navigate("/signin")}>login</button> : <>
-                    <button type="button" className="basic-button" onClick={() => navigate("/signup")}>help me choose</button>
+                    <button type="button" className="basic-button" onClick={() => navigate("/signup")}>help me pick a dish</button>
                     <button type="button" className="basic-button" onClick={() => navigate("/search-page")}>search page</button>
                         </>}
                 </article>

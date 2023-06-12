@@ -13,10 +13,14 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import rosemary from "./assets/images/rosemary.png"
 import yellowPepper from "./assets/images/pepper-yellow.png"
-import React from "react";
+import React, {useContext} from "react";
+import {AuthContext} from "./Context/AuthContext/AuthContext";
 
 
 function App() {
+
+    const { isAuth } = useContext(AuthContext);
+
   return (
    <>
        <NavBar />
@@ -25,14 +29,14 @@ function App() {
            <span className="pepper"> <img className="scale-image" src={yellowPepper} /></span>
            <Routes>
                <Route exact path="/" element={<Home />}/>
-               <Route path="/profile" element={<Profile /> }/>
+               <Route path="/profile" element={isAuth ? <Profile /> : <Home/> }/>
                <Route path="/signin" element={ <SignIn />} />
                <Route path="/signup" element={<SignUp />}/>
-               <Route path="/questionnaire" element={<Questionnaire />}/>
+               <Route path="/questionnaire" element={isAuth ? <Questionnaire /> : <Home/>}/>
                <Route path="/questionnaire/terrace" element={<QuestionnaireTerrace />}/>
                <Route path="/questionnaire/sliders" element={<QuestionnaireSliders />}/>
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
-               <Route path="/search-recipes" element={<SearchPage/>}/>
+               <Route path="/search-recipes" element={isAuth ? <SearchPage/> : <Home/>}/>
                <Route path="*" element={<PageNotFound/>}/>
            </Routes>
        </div>

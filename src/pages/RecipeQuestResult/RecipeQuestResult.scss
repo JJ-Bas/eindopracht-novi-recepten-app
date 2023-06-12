@@ -1,3 +1,18 @@
-.temporary-container {
+.result-container{
   display: flex;
+}
+
+.get-button {
+  margin-top: 150px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background: transparent;
+  border-radius: 50%;
+  border-style: solid;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: white;
+  width: 300px;
+  height: 300px;
 }

@@ -31,17 +31,19 @@ function RecipeResultDisplay({recipeName, image, time, ingredientsNumber, ingred
                                 onClick={() => infoToggle(true)}>
                             <img className={styles['icon']} src={listIcon} />
                         </button>
-                        <h2>{recipeName}</h2>
+                        <h2 className={styles["recipe-name"]}>{recipeName}</h2>
+                        <div className={styles["specifics-container"]}>
                         {recipeInfoContainer === false ?
                             <ul>
-                                <li>tijd: {time} minuten</li>
-                                <li>aantal ingredienten {ingredientsNumber}</li>
+                                <li>time: {time} minuten</li>
+                                <li>ingredients: {ingredientsNumber}</li>
                             </ul> :
                             <ul>
                                 {ingredientsList.map((i) => (
                                     <li key={i}>{[i]}</li>))}
                             </ul>}
-                        <button type="button" onClick={() => window.open(link, "_blank")}>instructies</button>
+                        </div>
+                        <button type="button" className="basic-button " onClick={() => window.open(link, "_blank")}>instructions</button>
                     </div>
                 </article>
                 <button className={styles['index-button']} type='button' onClick={back}>back</button>

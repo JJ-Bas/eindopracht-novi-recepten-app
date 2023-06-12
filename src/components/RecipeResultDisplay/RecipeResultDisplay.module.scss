@@ -2,18 +2,12 @@
 // -import classnames library?
 
 .outer-display-case {
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
-  //test end
-  width: 420px;
+width: 420px;
   height: 900px;
-  //
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 40px;
-  color: black;
 }
 
 .info-toggle-b{
@@ -42,9 +36,6 @@
 }
 
 .recipe-info-case {
-  border-style: solid;
-  border-color: red;
-  //test end
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,12 +60,39 @@
   border-color: rgba(148, 109, 46, 0.98);
   background-color: rgba(170, 123, 53);
   border-radius: 10px;
-  width: 100%;
+  width: 300px;
   height: 350px;
   padding: 40px;
+  display: flex;
+  flex-direction:  column;
 }
 
+.recipe-name{
+  font-size: 17px;
+  margin-bottom: 10px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: white;
+  border-width: 2px;
+}
+.specifics-container{
+  height: 180px;
+  justify-self: flex-end;
+  overflow: auto;
+  scrollbar-gutter: stable ;
+}
+
+
+
+
 .index-button {
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -82,11 +100,10 @@
   box-shadow: -10px 10px 5px #161a1d;
 }
 
-.top-button {
-}
 
 .index-button:hover {
   background-color: white;
+  background-color: rgba(170, 123, 53);
 }
 
 .index-button:active {

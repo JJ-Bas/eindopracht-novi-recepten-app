@@ -56,33 +56,28 @@ function SignUp() {
                         <Input
                             type='text'
                             id='username'
-                            label='naam'
+                            label='name'
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}/>
-                        {username.length > 6 ? <p></p> : <p>je naam moet minstens 6 tekens bevatten</p>}
+                        {username.length > 6 ? <p></p> : <p>must contain at least 6 characters</p>}
                         <Input
                             type='email'
                             id='email'
                             label='email'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}/>
-                        {email.includes("@") === true ? <p></p> : <p>dit is geen geldig email adres</p>}
+                        {email.includes("@") === true ? <p></p> : <p>this email is invalid</p>}
                         <Input
                             type='password'
                             id='password'
                             label='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
-                        {password.length > 6 ? <p></p> : <p>je password moet minstens 6 tekens bevatten</p>}
-                        //TODO waarom werkt de disabled submit niet?!
-                        <Input type='submit'
+                        {password.length > 6 ? <p></p> : <p>must contain at least 6 characters</p>}
+                        <Input type='submit' value="register"
                                disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
                     </form>
                     <p>{errorMessage}</p>
-                    <label>
-                        <input type='button' value="test-request" onClick={() => testRequest()}
-                               disabled={username.length > 6 && password.length > 6 && email.includes("@") === true ? false : true}/>
-                    </label>
                 </div>
             </div>
 

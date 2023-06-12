@@ -27,47 +27,50 @@ function SearchPage() {
         }
     }
 
-    function handleSubmit (e) {
-        fetchQuery(checkboxCombined, setResult, setSearchRequestState,e)
+    function handleSubmit(e) {
+        fetchQuery(checkboxCombined, setResult, setSearchRequestState, e)
     }
 
     return (<>
-            <div className="outer-container">
-                <div className={"inner-container " + styles["search-page-inner-container"]}>
-                    <div className={styles["search-bar"]}>
-                        <button type="button" onClick={() => toggleOptionsPopUp(!optionsPopUp)}> diët options</button>
+        <div className="outer-container">
+            <div className={"inner-container " + styles["search-page-inner-container"]}>
+                <div className={styles["search-bar"]}>
+                    <button type="button" className="basic-button"
+                            onClick={() => toggleOptionsPopUp(!optionsPopUp)}> diët options
+                    </button>
                     <form onSubmit={handleSubmit}>
                         <Input
                             type='text'
                             id='query'
                             value={query}
+                            className={styles["search-field"]}
                             onChange={(e) => setQuery(e.target.value)}/>
-                        <button type="submit"> search</button>
+                        <Input type="submit" className="basic-button" value="search"/>
                     </form>
-                    </div>
-                    <div className={styles["diet-pop-up"]}>
-                        {optionsPopUp === true ? <CheckboxDisplayOptions/> : ""}
-                    </div>
-                    <div className={styles['result-container']}>
-                        <ul>
+                </div>
+                <div className={styles["diet-pop-up"]}>
+                    {optionsPopUp === true ? <CheckboxDisplayOptions/> : ""}
+                </div>
+                <div className={styles['result-container']}>
+                    <ul>
                         {searchRequestState === "done" &&
                             result.hits.map((resultMap) => {
                                 return (
-                                <SearchDisplayCard
-                                    key={resultMap.recipe.shareAs}
-                                    label={resultMap.recipe.label}
-                                    image={resultMap.recipe.image}
-                                    link={resultMap.recipe.url}
-                                />
+                                    <SearchDisplayCard
+                                        key={resultMap.recipe.shareAs}
+                                        label={resultMap.recipe.label}
+                                        image={resultMap.recipe.image}
+                                        link={resultMap.recipe.url}
+                                    />
                                 )
                             })}
-                        </ul>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
+        </div>
 
-        </>)
+    </>)
 }
 
 export default SearchPage

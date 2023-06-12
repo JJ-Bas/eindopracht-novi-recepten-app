@@ -21,6 +21,9 @@
   box-shadow: $shadow-color 1.95px 1.95px 2.6px;
 }
 
+.search-field {
+  margin-right: 30px;
+}
 .result-container ul{
   width: 94vw;
   min-height: 100vh;
@@ -36,5 +39,9 @@
   top:140px;
   display: flex;
   justify-content: center;
+}
+
+.search-page-inner-container form {
+  margin-left: 30px;
 }
 

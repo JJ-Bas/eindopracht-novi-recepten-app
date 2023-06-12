@@ -87,7 +87,7 @@ function Profile() {
                             <li>{user.info}</li>
                             <li>{user.roles}</li>
                         </ul>
-                        <button type="button" onClick={() => toggleChangeForm(true)}>change profile</button>
+                        <button type="button" className="basic-button" onClick={() => toggleChangeForm(true)}>change profile</button>
                     </div>
                     <div className={styles["profile-picture"]}>
                         <input type="file" id="picture-upload"  accept="image/png, image/jpg, image/jpeg" onClick={uploadProfilePicture}/>

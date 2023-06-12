@@ -40,7 +40,7 @@ function SignIn() {
                         <Input
                             type='text'
                             id='username'
-                            label='naam'
+                            label='name'
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}/>
                         <Input
@@ -49,11 +49,11 @@ function SignIn() {
                             label='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
-                        <Input type='submit'value="login"/>
+                        <Input type='submit' value="login"/>
                     </form>
                     <p>{errorMessage}</p>
-                    <p>nog geen account?</p>
-                    <button type="button" onClick={() => navigate("/signup")}>register</button>
+                    <p>no account?</p>
+                    <button type="button" className="basic-button" onClick={() => navigate("/signup")}>register</button>
                 </div>
             </div>
         </>
