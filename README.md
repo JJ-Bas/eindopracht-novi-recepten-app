@@ -1,12 +1,21 @@
 # What to eat tonight? the application (temp name)
-//TODO inhouds opgave!
-## Description
+
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+
+## Description 
 
 This project is a website built using React. It utilizes the Edamam API to help users to find a recipe fitting to their
 needs.
 Users can browse and search the Edamam API recipe database or they have to option to use the recipefinder function to
 providem with a fitting selection of recipes to help them choose!
-
+![img.png](img.png)
 ## Installation
 
 To run the website locally, please follow these steps:
@@ -29,7 +38,7 @@ To run the website locally, please follow these steps:
    npm install
    ```
 
-## Configuration
+## Configuration {#configuration}
 
 To configure the project, you need to obtain an API key and ID from Edamam. Here's how you can do it:
 

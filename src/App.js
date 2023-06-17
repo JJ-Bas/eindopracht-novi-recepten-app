@@ -11,6 +11,7 @@ import QuestionnaireTerrace from "./pages/Questionnaire/QuestionnaireTerrace";
 import QuestionnaireSliders from "./pages/Questionnaire/QuestionnaireSliders";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import ChangeProfile from "./pages/ChangeProfile/ChangeProfile"
 import rosemary from "./assets/images/rosemary.png"
 import yellowPepper from "./assets/images/pepper-yellow.png"
 import React, {useContext} from "react";
@@ -25,8 +26,8 @@ function App() {
    <>
        <NavBar />
        <div className="app-body">
-           <span className="rosemary"> <img className="scale-image" src={rosemary} /></span>
-           <span className="pepper"> <img className="scale-image" src={yellowPepper} /></span>
+           <span className="rosemary"> <img className="scale-image" alt="rosemary" src={rosemary} /></span>
+           <span className="pepper"> <img className="scale-image" alt="bell-pepper" src={yellowPepper} /></span>
            <Routes>
                <Route exact path="/" element={<Home />}/>
                <Route path="/profile" element={isAuth ? <Profile /> : <Home/> }/>
@@ -37,6 +38,7 @@ function App() {
                <Route path="/questionnaire/sliders" element={<QuestionnaireSliders />}/>
                <Route path='/quest-results' element={<RecipeQuestResult />}/>
                <Route path="/search-recipes" element={isAuth ? <SearchPage/> : <Home/>}/>
+               <Route path="/change-profile" element={isAuth ? <ChangeProfile/> : <Home/>}/>
                <Route path="*" element={<PageNotFound/>}/>
            </Routes>
        </div>

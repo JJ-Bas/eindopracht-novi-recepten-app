@@ -2,20 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import Input from "../../components/Input/Input";
 import styles from "./Profile.module.scss"
 import chefHat from "../../assets/images/chef-hat.png"
 
 
 function Profile() {
     const navigate = useNavigate()
-    const [changeForm, toggleChangeForm] = useState(false)
-    //state voor het invullen van de profile data form
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    //popup toggle voor profile data form
-    const [profileChangeForm, toggleProfileChangeForm] = useState(true)
 
     const [profileData, setProfileData] = useState({})
     const [status, setStatus] = useState('pending')
@@ -34,7 +26,7 @@ function Profile() {
                             "Content-Type": "application/json", Authorization: `Bearer ${token}`,
                         },
                     });
-                    setProfileData(result);
+                    setProfileData(result.data);
                     setStatus('done')
                 } catch (e) {
                     console.error(e);
@@ -48,33 +40,8 @@ function Profile() {
                 navigate("/")
             }
         }
-
         fetchProfileData();
     }, [])
-
-    function uploadProfilePicture () {
-        console.log("upload-picture")
-    }
-    //TODO -maak deze functie af
-
-    async function changeProfileData() {
-        const token = localStorage.getItem('token');
-        try {
-            const result = await axios.put(`https://frontend-educational-backend.herokuapp.com/api/user`, {
-                "username": username, "email": email, "password": password, headers: {
-                    "Content-Type": "application/json", Authorization: `Bearer ${token}`,
-                },
-            });
-            setProfileData(result.data);
-            setStatus('done')
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    //TODO - aanpassen gebruikgegevens PUT /api/user
-    // - uploaden foto
-
 
     return (<>
         <div className="outer-container">
@@ -83,48 +50,18 @@ function Profile() {
                     <div className={styles["profile-text"]}>
                         <h2>profile</h2>
                         <ul>
-                            <li>naam: {user.username}</li>
-                            <li>email: {user.email}</li>
+                            <li>naam: {profileData.username}
+                            </li>
+                            <li>email: {profileData.email}</li>
                             <li>{user.info}</li>
                             <li>{user.roles}</li>
                         </ul>
-                        <button type="button" className="basic-button" onClick={() => toggleChangeForm(true)}>change profile</button>
+                        <button type="button" className="basic-button" onClick={() => navigate("/change-profile")}>change profile</button>
                     </div>
                     <div className={styles["profile-picture"]}>
-                        <img src={chefHat}/>
-
+                        <img src={chefHat} alt="chefs-hat"/>
                     </div>
                 </> : <p>Loading...</p>}
-
-                {changeForm === true ? <div className={styles["profile-change-popup"]}>
-                    <div className={styles["top-bar"]}>
-                        <button type="button" onClick={() => toggleChangeForm(false)}> close </button></div>
-                    <form  onSubmit={changeProfileData}>
-                    <Input
-                        type='text'
-                        id='username'
-                        label='naam'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}/>
-                    {username.length > 6 ? <p></p> : <p>je naam moet minstens 6 tekens bevatten</p>}
-                    <Input
-                        type='email'
-                        id='email'
-                        label='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
-                    {email.includes("@") === true ? <p></p> : <p>dit is geen geldig email adres</p>}
-                    <Input
-                        type='password'
-                        id='password'
-                        label='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}/>
-                    {password.length > 6 ? <p></p> : <p>je password moet minstens 6 tekens bevatten</p>}
-                    //TODO waarom werkt de disabled submit niet?!
-                    <Input type='submit'
-                           disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
-                </form></div> : "" }
             </div>
         </div>
     </>)

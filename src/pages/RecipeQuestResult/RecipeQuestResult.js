@@ -42,7 +42,6 @@ function RecipeQuestResult() {
     }
 
     useEffect(() => {
-        setError(false)
         fetchData('&dishType=main-course', cuisineType, setMainRecipeList, checkboxCombined, setMainReqStatus)
     }, [])
 

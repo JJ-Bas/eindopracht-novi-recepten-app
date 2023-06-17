@@ -1,0 +1,26 @@
+@import "src/assets/variables";
+
+
+.profile-change-container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: $card-background-color;
+  box-shadow: $shadow-color 1.95px 1.95px 2.6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: auto;
+}
+
+.profile-change-container form{
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.password-header {
+  margin-top: 30px;
+}

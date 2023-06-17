@@ -75,7 +75,7 @@ function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}/>
                         {password.length > 5 ? <p></p> : <p>must contain at least 6 characters</p>}
                         <Input type='submit' value="register"
-                               disabled={!(username.length > 6 && password.length > 6 && email.includes("@"))}/>
+                               disabled={!(username.length > 5 && password.length > 5 && email.includes("@"))}/>
                     </form>
                     <p>{errorMessage}</p>
                 </div>
