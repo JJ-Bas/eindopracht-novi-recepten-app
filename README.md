@@ -9,6 +9,10 @@
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
 
+## Github link
+
+https://github.com/JJ-Bas/eindopracht-novi-recepten-app
+
 ## Description 
 
 This project is a website built using React. It utilizes the Edamam API to help users to find a recipe fitting to their
