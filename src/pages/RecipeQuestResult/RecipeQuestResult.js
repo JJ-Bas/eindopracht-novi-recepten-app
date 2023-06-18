@@ -26,12 +26,9 @@ function RecipeQuestResult() {
     const [mainIndex, setMainIndex] = useState(0)
     const [dessertIndex, setDessertIndex] = useState(0)
 
-    //TODO - zorg dat de API request worden beinvloed door de opties van de CheckboxDisplay
-    //
-
-    async function fetchData(mealTypeString, cuisineTypeString, setlist, healthOptionString, setLoadingStatus) {
+    async function fetchData(mealTypeString, cuisineTypeString, setlist, healthOptionString, setLoadingStatus, config) {
         try {
-                       const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}&random=true${recipeTime}${mealTypeString}${cuisineTypeString}${healthOptionString}`);
+            const result = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&beta=true&app_id=${process.env.REACT_APP_API_ID}&app_key= ${process.env.REACT_APP_API_KEY}&random=true${recipeTime}${mealTypeString}${cuisineTypeString}${healthOptionString}`, config);
             setlist(result.data.hits);
             setLoadingStatus('done')
         } catch (e) {
@@ -42,6 +39,7 @@ function RecipeQuestResult() {
     }
 
     useEffect(() => {
+
         fetchData('&dishType=main-course', cuisineType, setMainRecipeList, checkboxCombined, setMainReqStatus)
     }, [])
 
@@ -68,15 +66,15 @@ function RecipeQuestResult() {
             <div className='result-container'>
                 {starterReqStatus === 'done' ? (starterRecipeList.length > 0 ? (
                     <RecipeResultDisplay
-                    next={() => nextItem(starterIndex, setStarterIndex)}
-                    image={starterRecipeList[starterIndex].recipe.image}
-                    recipeName={starterRecipeList[starterIndex].recipe.label}
-                    time={starterRecipeList[starterIndex].recipe.totalTime}
-                    ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
-                    ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
-                    link={starterRecipeList[starterIndex].recipe.url}
-                    back={() => lastItem(starterIndex, setStarterIndex)}
-                />
+                        next={() => nextItem(starterIndex, setStarterIndex)}
+                        image={starterRecipeList[starterIndex].recipe.image}
+                        recipeName={starterRecipeList[starterIndex].recipe.label}
+                        time={starterRecipeList[starterIndex].recipe.totalTime}
+                        ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
+                        ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
+                        link={starterRecipeList[starterIndex].recipe.url}
+                        back={() => lastItem(starterIndex, setStarterIndex)}
+                    />
                 ) : (
                     <button className="get-button">Sorry! No recipes found.</button>
                 )) : (
@@ -94,7 +92,9 @@ function RecipeQuestResult() {
                         ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
                         link={mainRecipeList[mainIndex].recipe.url}
                         back={() => lastItem(mainIndex, setMainIndex)}
-                    />) : (<button className="get-button" onClick={() =>navigate("/questionnaire")}>Sorry! No recipes found. try again</button>)):(<p>Loading...</p>)}
+                    />) : (
+                    <button className="get-button" onClick={() => navigate("/questionnaire")}>Sorry! No recipes found.
+                        try again</button>)) : (<p>Loading...</p>)}
 
                 {dessertReqStatus === 'done' ? (dessertRecipeList.length > 0 ? (
                         <RecipeResultDisplay

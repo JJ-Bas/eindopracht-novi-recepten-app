@@ -12,10 +12,7 @@ body {
   font-family: 'Hind', sans-serif;
   background-image: url("./assets/images/concrete-texture-transparent.png"), linear-gradient(56deg, $background-color 10%, $background-color-gradient 90%);
   color: $text-color-light;
-}
-
-li {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 h2 {
@@ -70,8 +67,6 @@ input {
 }
 
 
-
-
 /*//background images//*/
 
 .app-body {
@@ -88,7 +83,7 @@ input {
   transform: rotate(-50deg);
 }
 
-.pepper{
+.pepper {
   position: absolute;
   display: flex;
   width: 30vw;
@@ -100,4 +95,22 @@ input {
 
 .scale-image {
   display: block
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer a {
+  margin: 10px 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .inner-container {
+    scale: 80%;
+  }
+
+
+
 }

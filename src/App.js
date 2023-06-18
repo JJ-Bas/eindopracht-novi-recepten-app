@@ -42,6 +42,9 @@ function App() {
                <Route path="*" element={<PageNotFound/>}/>
            </Routes>
        </div>
+       <footer>
+           <a id="external-link" href="https://github.com/JJ-Bas/eindopracht-novi-recepten-app" target="_blank" >Github</a>
+           <a href="mailto:example@email.com">contact: example@email.com</a></footer>
    </>
   );
 }

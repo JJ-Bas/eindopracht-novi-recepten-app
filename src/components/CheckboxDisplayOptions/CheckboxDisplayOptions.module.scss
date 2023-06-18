@@ -82,3 +82,15 @@ input:checked + .toggle-slider:before {
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 700px) {
+  .container-checkbox-display {
+    scale: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container-checkbox-display {
+    scale: 70%;
+  }
+}

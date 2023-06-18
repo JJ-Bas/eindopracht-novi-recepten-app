@@ -21,6 +21,7 @@ function NavBar() {
                 <li><NavLink
                     className="nav-link"
                     to="/profile"
+                    disabled={!isAuth}
                 >profile</NavLink></li>
                 <li><NavLink
                     className="nav-link"

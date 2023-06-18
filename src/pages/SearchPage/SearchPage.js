@@ -38,9 +38,6 @@ function SearchPage() {
                     <button type="button" className="basic-button"
                             onClick={() => toggleOptionsPopUp(!optionsPopUp)}> diët options
                     </button>
-
-                    <button type="button" onClick={() => console.log(result)} ></button>
-                    {result.count === 0 ? <p>no result</p> :  <p>result!</p>}
                     <form onSubmit={handleSubmit}>
                         <Input
                             type='text'
