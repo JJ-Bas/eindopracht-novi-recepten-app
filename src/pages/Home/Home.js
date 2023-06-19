@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import "./Home.scss"
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../Context/AuthContext/AuthContext";
+import NavBar from "../../components/NavBar/NavBar";
 
 function Home() {
 

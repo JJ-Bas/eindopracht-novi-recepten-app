@@ -5,6 +5,7 @@ import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 import styles from "./SearchPage.module.scss"
 import SearchDisplayCard from "../../components/SearchDisplayCard/SearchDisplayCard";
 import CheckboxDisplayOptions from "../../components/CheckboxDisplayOptions/CheckboxDisplayOptions";
+import NavBar from "../../components/NavBar/NavBar";
 
 function SearchPage() {
 
@@ -32,6 +33,7 @@ function SearchPage() {
     }
 
     return (<>
+        <NavBar/>
         <div className="outer-container">
             <div className={"inner-container " + styles["search-page-inner-container"]}>
                 <div className={styles["search-bar"]}>

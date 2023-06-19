@@ -4,6 +4,7 @@ import axios from "axios";
 import {QuestionContext} from "../../Context/QuestionContext/QuestionContext";
 import './RecipeQuestResult.scss'
 import {useNavigate} from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 function RecipeQuestResult() {
 
@@ -62,57 +63,61 @@ function RecipeQuestResult() {
     }
 
     return (
-        <div className="outer-container">
-            <div className='result-container'>
-                {starterReqStatus === 'done' ? (starterRecipeList.length > 0 ? (
-                    <RecipeResultDisplay
-                        next={() => nextItem(starterIndex, setStarterIndex)}
-                        image={starterRecipeList[starterIndex].recipe.image}
-                        recipeName={starterRecipeList[starterIndex].recipe.label}
-                        time={starterRecipeList[starterIndex].recipe.totalTime}
-                        ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
-                        ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
-                        link={starterRecipeList[starterIndex].recipe.url}
-                        back={() => lastItem(starterIndex, setStarterIndex)}
-                    />
-                ) : (
-                    <button className="get-button">Sorry! No recipes found.</button>
-                )) : (
-                    <button type="button" className="get-button"
-                            onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>get
-                        starter</button>)}
-
-                {mainReqStatus === 'done' ? (error === false ? (
-                    <RecipeResultDisplay
-                        next={() => nextItem(mainIndex, setMainIndex)}
-                        image={mainRecipeList[mainIndex].recipe.image}
-                        recipeName={mainRecipeList[mainIndex].recipe.label}
-                        time={mainRecipeList[mainIndex].recipe.totalTime}
-                        ingredientsNumber={mainRecipeList[mainIndex].recipe.ingredients.length}
-                        ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
-                        link={mainRecipeList[mainIndex].recipe.url}
-                        back={() => lastItem(mainIndex, setMainIndex)}
-                    />) : (
-                    <button className="get-button" onClick={() => navigate("/questionnaire")}>Sorry! No recipes found.
-                        try again</button>)) : (<p>Loading...</p>)}
-
-                {dessertReqStatus === 'done' ? (dessertRecipeList.length > 0 ? (
+        <>
+            <NavBar/>
+            <div className="outer-container">
+                <div className='result-container'>
+                    {starterReqStatus === 'done' ? (starterRecipeList.length > 0 ? (
                         <RecipeResultDisplay
-                            next={() => nextItem(dessertIndex, setDessertIndex)}
-                            image={dessertRecipeList[dessertIndex].recipe.image}
-                            recipeName={dessertRecipeList[dessertIndex].recipe.label}
-                            time={dessertRecipeList[dessertIndex].recipe.totalTime}
-                            ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
-                            ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
-                            link={dessertRecipeList[dessertIndex].recipe.url}
-                            back={() => lastItem(dessertIndex, setDessertIndex)}
-                        />) : (<button className="get-button">Sorry! No recipes found.</button>)
-                ) : (
-                    <button type="button" className="get-button"
-                            onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>get
-                        dessert</button>)}
+                            next={() => nextItem(starterIndex, setStarterIndex)}
+                            image={starterRecipeList[starterIndex].recipe.image}
+                            recipeName={starterRecipeList[starterIndex].recipe.label}
+                            time={starterRecipeList[starterIndex].recipe.totalTime}
+                            ingredientsNumber={starterRecipeList[starterIndex].recipe.ingredients.length}
+                            ingredientsList={starterRecipeList[starterIndex].recipe.ingredientLines}
+                            link={starterRecipeList[starterIndex].recipe.url}
+                            back={() => lastItem(starterIndex, setStarterIndex)}
+                        />
+                    ) : (
+                        <button className="get-button">Sorry! No recipes found.</button>
+                    )) : (
+                        <button type="button" className="get-button"
+                                onClick={() => fetchData('&dishType=starter', cuisineType, setStarterRecipeList, checkboxCombined, setStarterReqStatus)}>get
+                            starter</button>)}
+
+                    {mainReqStatus === 'done' ? (error === false ? (
+                        <RecipeResultDisplay
+                            next={() => nextItem(mainIndex, setMainIndex)}
+                            image={mainRecipeList[mainIndex].recipe.image}
+                            recipeName={mainRecipeList[mainIndex].recipe.label}
+                            time={mainRecipeList[mainIndex].recipe.totalTime}
+                            ingredientsNumber={mainRecipeList[mainIndex].recipe.ingredients.length}
+                            ingredientsList={mainRecipeList[mainIndex].recipe.ingredientLines}
+                            link={mainRecipeList[mainIndex].recipe.url}
+                            back={() => lastItem(mainIndex, setMainIndex)}
+                        />) : (
+                        <button className="get-button" onClick={() => navigate("/questionnaire")}>Sorry! No recipes
+                            found.
+                            try again</button>)) : (<p>Loading...</p>)}
+
+                    {dessertReqStatus === 'done' ? (dessertRecipeList.length > 0 ? (
+                            <RecipeResultDisplay
+                                next={() => nextItem(dessertIndex, setDessertIndex)}
+                                image={dessertRecipeList[dessertIndex].recipe.image}
+                                recipeName={dessertRecipeList[dessertIndex].recipe.label}
+                                time={dessertRecipeList[dessertIndex].recipe.totalTime}
+                                ingredientsNumber={dessertRecipeList[dessertIndex].recipe.ingredients.length}
+                                ingredientsList={dessertRecipeList[dessertIndex].recipe.ingredientLines}
+                                link={dessertRecipeList[dessertIndex].recipe.url}
+                                back={() => lastItem(dessertIndex, setDessertIndex)}
+                            />) : (<button className="get-button">Sorry! No recipes found.</button>)
+                    ) : (
+                        <button type="button" className="get-button"
+                                onClick={() => fetchData('&dishType=desserts', cuisineType, setDessertRecipeList, checkboxCombined, setDessertReqStatus)}>get
+                            dessert</button>)}
+                </div>
             </div>
-        </div>)
+        </>)
 }
 
 export default RecipeQuestResult

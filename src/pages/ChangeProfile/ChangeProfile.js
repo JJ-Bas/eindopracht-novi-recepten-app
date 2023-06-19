@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Input from "../../components/Input/Input";
 import axios from "axios";
 import styles from "./ChangeProfile.module.scss"
+import NavBar from "../../components/NavBar/NavBar";
 
 
 function ChangeProfile() {
@@ -38,42 +39,48 @@ function ChangeProfile() {
     }
 
     return (
-    <div className="outer-container"><div className={"inner-container "+styles['profile-change-container'] }>
-        <h2>change email</h2>
-        <form  onSubmit={(event) => changeProfileData(event, email)}>
-            <Input
-                type='email'
-                id='email'
-                label='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}/>
-            {email.includes("@") === true ? <p></p> : <p>dit is geen geldig email adres</p>}
-            <Input type='submit' value="submit email"
-                   disabled={!(email.includes("@"))}/>
-            </form>
-        <h2 className={styles["password-header"]}>change password</h2>
-        <form onSubmit={(event) => changeProfileData(event, null, password, passwordCheck)
-        }>
-            <Input
-                type='password'
-                id='password'
-                label='new password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}/>
-            {password.length > 5 ? <p></p> : <p>must contain at least 6 characters</p>}
-            <Input
-                type='password'
-                id='passwordCheck'
-                label='type password again'
-                value={passwordCheck}
-                onChange={(e) => setPasswordCheck(e.target.value)}/>
-            {(password.length > 5 && password === passwordCheck) ? <p></p> : <p>both password fields dont match</p> }
-            <Input type='submit' value="submit password"
-                   disabled={!(password.length > 5 && password === passwordCheck)}/>
-        </form>
-        <button className="basic-button" onClick={() => navigate("/profile")}>back</button>
-    </div></div>
-)
+        <>
+            <NavBar/>
+            <div className="outer-container">
+                <div className={"inner-container " + styles['profile-change-container']}>
+                    <h2>change email</h2>
+                    <form onSubmit={(event) => changeProfileData(event, email)}>
+                        <Input
+                            type='email'
+                            id='email'
+                            label='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}/>
+                        {email.includes("@") === true ? <p></p> : <p>dit is geen geldig email adres</p>}
+                        <Input type='submit' value="submit email"
+                               disabled={!(email.includes("@"))}/>
+                    </form>
+                    <h2 className={styles["password-header"]}>change password</h2>
+                    <form onSubmit={(event) => changeProfileData(event, null, password, passwordCheck)
+                    }>
+                        <Input
+                            type='password'
+                            id='password'
+                            label='new password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}/>
+                        {password.length > 5 ? <p></p> : <p>must contain at least 6 characters</p>}
+                        <Input
+                            type='password'
+                            id='passwordCheck'
+                            label='type password again'
+                            value={passwordCheck}
+                            onChange={(e) => setPasswordCheck(e.target.value)}/>
+                        {(password.length > 5 && password === passwordCheck) ? <p></p> :
+                            <p>both password fields dont match</p>}
+                        <Input type='submit' value="submit password"
+                               disabled={!(password.length > 5 && password === passwordCheck)}/>
+                    </form>
+                    <button className="basic-button" onClick={() => navigate("/profile")}>back</button>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default ChangeProfile

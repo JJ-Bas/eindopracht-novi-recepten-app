@@ -24,7 +24,6 @@ function App() {
 
   return (
    <>
-       <NavBar />
        <div className="app-body">
            <span className="rosemary"> <img className="scale-image" alt="rosemary" src={rosemary} /></span>
            <span className="pepper"> <img className="scale-image" alt="bell-pepper" src={yellowPepper} /></span>

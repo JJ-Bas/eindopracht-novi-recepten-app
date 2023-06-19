@@ -4,6 +4,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import styles from "./Profile.module.scss"
 import chefHat from "../../assets/images/chef-hat.png"
+import NavBar from "../../components/NavBar/NavBar";
 
 
 function Profile() {
@@ -40,10 +41,12 @@ function Profile() {
                 navigate("/")
             }
         }
+
         fetchProfileData();
     }, [])
 
     return (<>
+        <NavBar/>
         <div className="outer-container">
             <div className={"inner-container " + styles["profile-container"]}>
                 {status === 'done' ? <>
@@ -56,7 +59,9 @@ function Profile() {
                             <li>{user.info}</li>
                             <li>{user.roles}</li>
                         </ul>
-                        <button type="button" className="basic-button" onClick={() => navigate("/change-profile")}>change profile</button>
+                        <button type="button" className="basic-button"
+                                onClick={() => navigate("/change-profile")}>change profile
+                        </button>
                     </div>
                     <div className={styles["profile-picture"]}>
                         <img src={chefHat} alt="chefs-hat"/>

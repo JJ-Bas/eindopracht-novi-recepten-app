@@ -4,6 +4,7 @@ import {AuthContext} from "../../Context/AuthContext/AuthContext";
 import Input from "../../components/Input/Input";
 import styles from "./SignIn.module.scss"
 import {useNavigate} from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 
 function SignIn() {
@@ -33,8 +34,9 @@ function SignIn() {
 
     return (
         <>
+            <NavBar/>
             <div className="outer-container">
-                <div className={"inner-container "+styles['sign-in-container'] }>
+                <div className={"inner-container " + styles['sign-in-container']}>
                     <h2>login</h2>
                     <form onSubmit={handleSignIn}>
                         <Input

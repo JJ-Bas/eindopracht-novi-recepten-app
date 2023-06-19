@@ -3,6 +3,7 @@ import axios from "axios";
 import Input from "../../components/Input/Input";
 import {useNavigate} from "react-router-dom";
 import styles from "../SignUp/SignUp.module.scss";
+import NavBar from "../../components/NavBar/NavBar";
 
 
 function SignUp() {
@@ -28,10 +29,7 @@ function SignUp() {
         setErrorMessage("")
         try {
             const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {
-                "username": username,
-                "email": email,
-                "password": password,
-                "role": ["user"]
+                "username": username, "email": email, "password": password, "role": ["user"]
             })
             console.log(result)
             navigate('/signin')
@@ -47,8 +45,8 @@ function SignUp() {
         }
     }
 
-    return (
-        <>
+    return (<>
+            <NavBar/>
             <div className="outer-container">
                 <div className={"inner-container " + styles['sign-up-container']}>
                     <h2>register</h2>
@@ -82,8 +80,7 @@ function SignUp() {
             </div>
 
 
-        </>
-    )
+        </>)
 }
 
 export default SignUp;
